@@ -22,7 +22,7 @@ async function fetchAPI() {
             throw new Error("Response wasn't ok!");
         }
         const data = await reponse.json();
-        cityNameElement.textContent = data.main.name;
+        cityNameElement.innerHTML = `<img id="locationIcon" src="https://th.bing.com/th/id/R.1d41d1f32177a1bc5ead6ab2867e2e67?rik=o8s29wXrd9SHwA&riu=http%3a%2f%2fpluspng.com%2fimg-png%2fpng-location-location-black-png-image-4231-1200.png&ehk=kIO1Jynemn%2bb1PmR%2fJgUS4uH4WnLJHrz5SbkNYKmGWA%3d&risl=&pid=ImgRaw&r=0">${data.name}`
         console.log(cityNameElement);
         const temprature = data.main.temp;
         tempratureElement.textContent = temprature.toFixed(0);
@@ -34,7 +34,7 @@ async function fetchAPI() {
         const windSpeed = data.wind.speed;
         windSpeedElement.innerHTML = `${windSpeed.toFixed(1)} Km/h<br><span class="smallText">Wind Speed</span>`;
         const weatherIcon = data.weather[0].icon;
-        // console.log(weatherIcon)
+        console.log(data);
         // weatherIconElement.innerHTML = `<img src="${weatherIcon}" alt="Weather Icon`;
         // weatherIconElement.classList.remove('invisible');
 
