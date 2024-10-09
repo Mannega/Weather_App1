@@ -7,33 +7,64 @@ const weatherDescriptionElement = document.getElementById('weatherDiscription');
 const humidityElement = document.getElementById('humidityElement');
 const windSpeedElement = document.getElementById('windSpeedElement');
 const weatherIconElement = document.getElementById('weatherIcon');
+const unitSelectionLabels = document.getElementsByClassName('unitSelectionLabel');
+const unitRadioInputs = document.getElementsByName('unitSelectionRadio');
+
+Array.from(unitSelectionLabels).forEach(element => {
+    element.style.display = 'none'; 
+});
+
+let currentCity;
+let selectedUnit;
+
+searchButton.addEventListener('click', event => {
+    currentCity = searchField.value;
+    fetchAPI();
+})
 
 async function fetchAPI() {
     try {
-        const cityName = searchField.value;
-        console.log(cityName);
-        const unit = 'metric';
-        const reponse = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${APIKey}&units=${unit}`);
-        if(reponse.status == 404) {
+        let unit;
+        for(let input of unitRadioInputs) {
+            if(input.checked) {
+                selectedUnit = input.value;
+                console.log(selectedUnit);
+        }
+            }   
+        unit = selectedUnit == 'Celsius' ? 'metric' : 'imperial';
+
+        console.log(currentCity);
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${currentCity}&appid=${APIKey}&units=${unit}`);
+        if(response.status == 404 || !response.ok) {
             tempratureElement.textContent = 'Invalid city name!';
             weatherDescriptionElement.textContent = '';
             windSpeedElement.innerHTML = '';
             humidityElement.innerHTML = '';
+            cityNameElement.innerHTML = ``;
+            const unitSelectionLabels = document.getElementsByClassName('unitSelectionLabel');
+            Array.from(unitSelectionLabels).forEach(element => {
+                element.style.display = 'none'; 
+            });
+
             throw new Error("Response wasn't ok!");
         }
-        const data = await reponse.json();
+        Array.from(unitSelectionLabels).forEach(element => {
+            element.style.display = 'block'; 
+        });
+        const data = await response.json();
         cityNameElement.innerHTML = `<img id="locationIcon" src="https://th.bing.com/th/id/R.1d41d1f32177a1bc5ead6ab2867e2e67?rik=o8s29wXrd9SHwA&riu=http%3a%2f%2fpluspng.com%2fimg-png%2fpng-location-location-black-png-image-4231-1200.png&ehk=kIO1Jynemn%2bb1PmR%2fJgUS4uH4WnLJHrz5SbkNYKmGWA%3d&risl=&pid=ImgRaw&r=0">${data.name}`
         console.log(cityNameElement);
         const temprature = data.main.temp;
-        tempratureElement.textContent = temprature.toFixed(0);
+        tempratureElement.innerHTML = `${temprature.toFixed(1)}°${selectedUnit == 'Celsius' ? 'C' : 'F'}`
         weatherDescription = data.weather[0].description;
         weatherDescriptionElement.style.textTransform = 'capitalize';
         weatherDescriptionElement.textContent = weatherDescription;
         const humidity = data.main.humidity;
         humidityElement.innerHTML = `${humidity.toFixed(0)}%<br><span class="smallText">Humidity</span>`;
         const windSpeed = data.wind.speed;
-        windSpeedElement.innerHTML = `${windSpeed.toFixed(1)} Km/h<br><span class="smallText">Wind Speed</span>`;
+        windSpeedElement.innerHTML = `${windSpeed.toFixed(1)} ${selectedUnit == 'Celsius' ? 'km/h' : 'mph'}<br><span class="smallText">Wind Speed</span>`;
         const weatherIcon = data.weather[0].icon;
+        searchField.value = ``;
         console.log(data);
         // weatherIconElement.innerHTML = `<img src="${weatherIcon}" alt="Weather Icon`;
         // weatherIconElement.classList.remove('invisible');
@@ -47,13 +78,13 @@ async function fetchAPI() {
     }
 }
 
-function enterButton() {
+Array.from(unitRadioInputs).forEach(element => {
+    element.addEventListener('change', fetchAPI)
+})
 
-}
-
-searchButton.addEventListener("click", fetchAPI);
-document.body.addEventListener("keyup", (event) => {
+document.body.addEventListener("keyup", event => {
     if(event.key == 'Enter') {
+        currentCity = searchField.value;
         fetchAPI();
     }
 })
