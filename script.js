@@ -9,6 +9,8 @@ const windSpeedElement = document.getElementById('windSpeedElement');
 const weatherIconElement = document.getElementById('weatherIcon');
 const unitSelectionLabels = document.getElementsByClassName('unitSelectionLabel');
 const unitRadioInputs = document.getElementsByName('unitSelectionRadio');
+const minTempLabel = document.getElementById('minTemp');
+const maxTempLabel = document.getElementById('maxTemp');
 
 Array.from(unitSelectionLabels).forEach(element => {
     element.style.display = 'none'; 
@@ -45,6 +47,8 @@ async function fetchAPI() {
             Array.from(unitSelectionLabels).forEach(element => {
                 element.style.display = 'none'; 
             });
+            minTempLabel.textContent = '';
+            maxTempLabel.textContent = '';
 
             throw new Error("Response wasn't ok!");
         }
@@ -65,6 +69,10 @@ async function fetchAPI() {
         windSpeedElement.innerHTML = `${windSpeed.toFixed(1)} ${selectedUnit == 'Celsius' ? 'km/h' : 'mph'}<br><span class="smallText">Wind Speed</span>`;
         const weatherIcon = data.weather[0].icon;
         searchField.value = ``;
+        const minTemp = data.main.temp_min;
+        const maxTemp = data.main.temp_max;
+        minTempLabel.textContent = `Min Temp: ${minTemp.toFixed(1)}`;
+        maxTempLabel.textContent = `Max Temp: ${maxTemp.toFixed(1)}`;
         console.log(data);
         // weatherIconElement.innerHTML = `<img src="${weatherIcon}" alt="Weather Icon`;
         // weatherIconElement.classList.remove('invisible');
