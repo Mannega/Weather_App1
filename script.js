@@ -16,6 +16,9 @@ Array.from(unitSelectionLabels).forEach(element => {
     element.style.display = 'none'; 
 });
 
+maxTempLabel.style.display = 'none';
+minTempLabel.style.display = 'none';
+
 let currentCity;
 let selectedUnit;
 
@@ -73,6 +76,9 @@ async function fetchAPI() {
         const maxTemp = data.main.temp_max;
         minTempLabel.textContent = `Min Temp: ${minTemp.toFixed(1)}`;
         maxTempLabel.textContent = `Max Temp: ${maxTemp.toFixed(1)}`;
+        maxTempLabel.style.display = 'block';
+        minTempLabel.style.display = 'block';
+
         console.log(data);
         // weatherIconElement.innerHTML = `<img src="${weatherIcon}" alt="Weather Icon`;
         // weatherIconElement.classList.remove('invisible');
