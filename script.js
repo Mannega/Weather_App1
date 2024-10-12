@@ -12,6 +12,8 @@ const unitRadioInputs = document.getElementsByName('unitSelectionRadio');
 const minTempLabel = document.getElementById('minTemp');
 const maxTempLabel = document.getElementById('maxTemp');
 
+searchField.focus(); 
+
 Array.from(unitSelectionLabels).forEach(element => {
     element.style.display = 'none'; 
 });
