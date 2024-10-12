@@ -161,6 +161,10 @@ fieldset {
     margin-top: 12px;
 }
 
+#categoryField {
+    height: 30px;
+}
+
 #nameFieldCatSelectDiv {
     display: flex;
     flex-direction: row;
