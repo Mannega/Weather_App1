@@ -30,9 +30,34 @@
         </header>
         <main>
             <fieldset id="transactions">
-                <legend>Transactions</legend>
+                <div id="transactionFilterDiv">
+                    <legend>Transactions</legend>
+                    <div id="transactionFilters">
+                        <label for="transactionFilterSelect" id="transactionFilterLabel">Filter by type
+                            <select id="transactionFilterSelect" name="selectedFilter">
+                                <option value="All">All</option>
+                                <option value="Income">Income</option>
+                                <option value="Expenses">Expenses</option>
+                            </select>
+                            </label>
+                        <label for="categoryField" id="categoryFieldLabel">Category
+                            <select id="categoryField" name="categoryField">
+                                <option value="Food">Food</option>
+                                <option value="Utilities">Utilities</option>
+                                <option value="Rent">Rent/Mortgage</option>
+                                <option value="Transportation">Transportation</option>
+                                <option value="Entertainment">Entertainment</option>
+                                <option value="Health">Health</option>
+                                <option value="Shopping">Shopping</option>
+                                <option value="Education">Education</option>
+                                <option value="Travel">Travel</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </label>  
+                    </div>
+                </div>
                 <ul id="transactionList">
-
+                    <li></li>
                 </ul>
             </fieldset>
             <fieldset id="addTransaction">
@@ -41,7 +66,20 @@
                     <button id="expenseButton" class="expenseIncomeChoice">Expense</button>
                     <button id="incomeButton" class="expenseIncomeChoice">Income</button>
                 </div>
-                <label for="nameField" id="nameFieldLabel">Name <input id="nameField" type="text"></label>
+                <div id="nameFieldCatSelectDiv">
+                    <label for="nameField" id="nameFieldLabel">Name<br> <input id="nameField" type="text"></label>
+                    <label for="categorySelect" id="categorySelectLabel">Category <br>
+                            <select id="categorySelect" name="category">
+                                <option value="Food">Food</option>
+                                <option value="Utilities">Utilities</option>
+                                <option value="Transportation">Transportation</option>
+                                <option value="Rent">Rent</option>
+                                <option value="Entertainment">Entertainment</option>
+                                <option value="Health">Health</option>
+                                <option value="Other">Other</option>
+                            </select>
+                    </label>                
+                    </div>
                 <div id="amountDateDiv">
                     <label for="amountField" id="amountFieldLabel">Amount <input id="amountField" type="number" value="0"></label>
                     <label for="dateField" id="dateFieldLabel">Date <input id="dateField" type="date"></label>
