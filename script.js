@@ -102,3 +102,11 @@ document.body.addEventListener("keyup", event => {
         fetchAPI();
     }
 })
+
+document.addEventListener("DOMContentLoaded", function() {
+    const searchField = document.getElementById('searchField');
+
+    searchField.addEventListener("click", function() {
+        searchField.focus(); 
+    });
+});
