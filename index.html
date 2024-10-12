@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+   <div id="container">
+    <h1>Expense Tracker</h1>
+        <header>
+            <div id="totalBalance">
+                Total Balance <br>
+                $0.00
+            </div>
+            <div id="incomeExpense">
+                <div id="income">Icome <br>
+                    &plus;$0.00</div>
+                <div id="Expense">Income <br>
+                    &minus;$0.00</div>
+            </div>
+        </header>
+        <main>
+            <fieldset id="transactions">
+                <legend>Transactions</legend>
+                <ul id="transactionList">
+
+                </ul>
+            </fieldset>
+            <fieldset id="addTransaction">
+                <legend>Add Transaction</legend>
+                <button id="expenseButton" class="expenseIncomeChoice">Expense</button>
+                <button id="incomeButton" class="expenseIncomeChoice">Income</button>
+                <label for="nameField" id="nameFieldLabel">Name <input id="nameField" type="text"></label>
+                <div id="amountDateDiv">
+                    <label for="amountField" id="amountFieldLabel">Amount <input id="amountField" type="number"></label>
+                    <label for="dateField" id="dateFieldLabel">Date <input id="dateField" type="date"></label>
+                </div>
+                <button id="addExpenseButton">Add</button>
+            </fieldset>
+        </main>
+   </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
