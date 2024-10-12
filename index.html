@@ -14,14 +14,18 @@
     <h1>Expense Tracker</h1>
         <header>
             <div id="totalBalance">
-                Total Balance <br>
-                $0.00
+                <p class="smallText">Total Balance</p>
+                <p   class="bigText">$0.00</p>
             </div>
             <div id="incomeExpense">
-                <div id="income">Income <br>
-                    &plus;$0.00</div>
-                <div id="Expense">Expense <br>
-                    &minus;$0.00</div>
+                <div id="income">
+                    <p class="smallText">Income</p>
+                    <p  class="mediumText">&plus;$0.00</p>
+                </div>
+                <div id="Expense">
+                    <p class="smallText">Expense</p>
+                    <p  class="mediumText">&minus;$0.00</p>
+                </div>
             </div>
         </header>
         <main>
@@ -33,11 +37,13 @@
             </fieldset>
             <fieldset id="addTransaction">
                 <legend>Add Transaction</legend>
-                <button id="expenseButton" class="expenseIncomeChoice">Expense</button>
-                <button id="incomeButton" class="expenseIncomeChoice">Income</button>
+                <div id="inputExpenseChoiceButtons">
+                    <button id="expenseButton" class="expenseIncomeChoice">Expense</button>
+                    <button id="incomeButton" class="expenseIncomeChoice">Income</button>
+                </div>
                 <label for="nameField" id="nameFieldLabel">Name <input id="nameField" type="text"></label>
                 <div id="amountDateDiv">
-                    <label for="amountField" id="amountFieldLabel">Amount <input id="amountField" type="number"></label>
+                    <label for="amountField" id="amountFieldLabel">Amount <input id="amountField" type="number" value="0"></label>
                     <label for="dateField" id="dateFieldLabel">Date <input id="dateField" type="date"></label>
                 </div>
                 <button id="addExpenseButton">Add</button>

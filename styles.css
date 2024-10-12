@@ -1,0 +1,156 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: "Poppins", "Roboto", Verdana, Tahoma, sans-serif;
+    /* border: 0.5px solid black; */
+    /* width: 100%; */
+
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 0px  5px;
+}
+
+#container, header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+#container {
+    width: 400px;
+    /* border: 1px solid black; */
+    padding: 10px;
+}
+
+
+header {
+  width: 100%;
+  padding: 15px;
+}
+
+h1 {
+    font-size: 2.8rem;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.95);
+    margin-bottom: 10px;
+}
+
+#totalBalance, #income, #expense {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#incomeExpense {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    gap: 30%;
+}
+
+.smallText {
+    font-size: 1.5rem;
+}
+
+.mediumText {
+    font-size: 2.5rem;
+}
+
+.bigText {
+    font-size: 3.5rem;
+}
+
+fieldset {
+    border: none;
+}
+
+#transactions {
+    height: 30%;
+    width: 100%;
+}
+
+#transactions legend {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+#transactions li {
+    
+}
+
+#addTransaction {
+    display: flex;
+    flex-direction: column;
+}
+
+#addTransaction legend {
+    font-size: 2.1rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+#addTransaction input {
+    margin: 10px;
+    width: 100%;
+    height: 25px;
+    margin-left: -0.3px;
+}
+
+#addTransaction label {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+#inputExpenseChoiceButtons {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 15px
+}
+
+#inputExpenseChoiceButtons button {
+    padding: 3px;
+    width: 40%;
+    height: 10%;
+    border: none;
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+#amountDateDiv {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 10px;
+}
+
+#amountDateDiv label {
+    display: flex;  
+    flex-direction: column;
+    align-items: flex-start;
+    /* border: 2px solid black; */
+    width: 45%;
+    /* gap: -20px; */
+}
+
+#amountDateDiv input {
+    width: 90%;
+    height: 60%;
+}
+
+#addExpenseButton {
+    width: 100%;
+    height: 30px;
+    margin-top: 25px;
+    border: none;
+    border-radius: 3px;
+}
