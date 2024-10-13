@@ -102,7 +102,7 @@ document.body.addEventListener("keyup", event => {
     if(event.key == 'Enter') {
         if(searchField.value !== '') {
             currentCity = searchField.value;
-            searchField.blur();
+            searchField.focus();
             fetchAPI();
         }
     }
