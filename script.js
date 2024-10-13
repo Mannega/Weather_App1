@@ -100,9 +100,11 @@ Array.from(unitRadioInputs).forEach(element => {
 
 document.body.addEventListener("keyup", event => {
     if(event.key == 'Enter') {
-        currentCity = searchField.value;
-        searchField.blur();
-        fetchAPI();
+        if(searchField.value !== '') {
+            currentCity = searchField.value;
+            searchField.blur();
+            fetchAPI();
+        }
     }
 })
 
