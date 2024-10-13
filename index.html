@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-   <div id="container">
     <h1>Expense Tracker</h1>
+   <div id="container">
         <header>
             <div id="totalBalance">
                 <p class="smallText">Total Balance</p>
@@ -67,7 +67,7 @@
                     <button id="incomeButton" class="expenseIncomeChoice">Income</button>
                 </div>
                 <div id="nameFieldCatSelectDiv">
-                    <label for="nameField" id="nameFieldLabel">Name<br> <input id="nameField" type="text"></label>
+                    <label for="nameField" id="nameFieldLabel">Name<br> <input id="nameField" type="text" required></label>
                     <label for="categorySelect" id="categorySelectLabel">Category <br>
                             <select id="categorySelect" name="category">
                                 <option value="Food">Food</option>
@@ -81,8 +81,8 @@
                     </label>                
                     </div>
                 <div id="amountDateDiv">
-                    <label for="amountField" id="amountFieldLabel">Amount <input id="amountField" type="number" value="0"></label>
-                    <label for="dateField" id="dateFieldLabel">Date <input id="dateField" type="date"></label>
+                    <label for="amountField" id="amountFieldLabel">Amount <input id="amountField" type="number" value="0" required></label>
+                    <label for="dateField" id="dateFieldLabel">Date <input id="dateField" type="date" required></label>
                 </div>
                 <button id="addExpenseButton">Add</button>
             </fieldset>
