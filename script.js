@@ -20,6 +20,8 @@ const dateField = document.getElementById("dateField");
 
 const addExpenseButton = document.getElementById("addExpenseButton");
 
+let transactions = [];
+
 expenseChoiceButton.addEventListener("click", event => {
     if(incomeChoiceButton.classList.contains('selected')) {
         incomeChoiceButton.classList.remove('selected');
@@ -36,3 +38,25 @@ incomeChoiceButton.addEventListener("click", event => {
         event.target.classList.add('selected');
     }
 })
+
+addExpenseButton.addEventListener("click", addTransaction);
+
+function addTransaction() {
+    const transactionName = nameField.value;
+    const transactionCategory = categorySelect.value;
+    const transactionAmount = amountField.value;
+    const transactionDate = dateField.value;
+    const FieldsArray = [transactionName, transactionAmount, transactionCategory,  transactionDate];
+
+    if(transactionName == '') {
+        alert("Name field can't be empty");
+    }
+
+    else if(transactionAmount == 0) {
+        alert("Transaction amount can't be 0");
+    }
+
+    else if(transactionDate == '') {
+        alert("Please provide a trasaction date");
+    }
+}
