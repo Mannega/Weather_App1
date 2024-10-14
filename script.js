@@ -20,21 +20,19 @@ const dateField = document.getElementById("dateField");
 
 const addExpenseButton = document.getElementById("addExpenseButton");
 
-function chooseTransactionType() {
-    expenseChoiceButton.addEventListener("click", event => {
-        if(incomeChoiceButton.classList.contains('selected')) {
-            incomeChoiceButton.classList.remove('selected');
-            event.target.classList.add('selected');
-        } else {
-            event.target.classList.add('selected');
-        }
-    })
-    incomeChoiceButton.addEventListener("click", event => {
-        if(expenseChoiceButton.classList.contains('selected')) {
-            incomeChoiceButton.classList.remove('selected');
-            event.target.classList.add('selected');
-        } else {
-            event.target.classList.add('selected');
-        }
-    })
-}
+expenseChoiceButton.addEventListener("click", event => {
+    if(incomeChoiceButton.classList.contains('selected')) {
+        incomeChoiceButton.classList.remove('selected');
+        event.target.classList.add('selected');
+    } else {
+        event.target.classList.add('selected');
+    }
+})
+incomeChoiceButton.addEventListener("click", event => {
+    if(expenseChoiceButton.classList.contains('selected')) {
+        incomeChoiceButton.classList.remove('selected');
+        event.target.classList.add('selected');
+    } else {
+        event.target.classList.add('selected');
+    }
+})
