@@ -30,7 +30,7 @@ expenseChoiceButton.addEventListener("click", event => {
 })
 incomeChoiceButton.addEventListener("click", event => {
     if(expenseChoiceButton.classList.contains('selected')) {
-        incomeChoiceButton.classList.remove('selected');
+        expenseChoiceButton.classList.remove('selected');
         event.target.classList.add('selected');
     } else {
         event.target.classList.add('selected');

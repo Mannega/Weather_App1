@@ -255,6 +255,10 @@ select {
     border-radius: 3px;
 }
 
+.selected {
+    background-color: rgb(202, 201, 201);
+}
+
 @media screen and (min-height: 700px) {
    h1 {
     margin-bottom: 30px;
