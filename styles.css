@@ -166,11 +166,11 @@ fieldset {
     display: flex;
     justify-content: space-around;
     margin-bottom: 15px;
-    background-color: #eee;
     border-radius: 3px;
 }
 
 #inputExpenseChoiceButtons button {
+    background-color: #eee;
     padding: 3px;
     width: 40%;
     height: 10%;
@@ -256,7 +256,7 @@ select {
 }
 
 .selected {
-    background-color: rgb(202, 201, 201);
+    background-color: rgb(202, 201, 201) !important;
 }
 
 @media screen and (min-height: 700px) {
