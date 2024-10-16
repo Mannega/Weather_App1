@@ -48,6 +48,24 @@ body {
     background-size: cover;
 }
 
+@media screen and (max-width: 295px) {
+    body {
+        transform: scale(0.95);
+    }
+}
+
+@media screen and (max-width: 290px) {
+    body {
+        transform: scale(0.90);
+    }
+}
+
+@media screen and (max-width: 285px) {
+    body {
+        transform: scale(0.85);
+    }
+}
+
 html {
     font-size: 62.5%;
 }
@@ -79,15 +97,16 @@ h1 {
 
 #searchContainer {
     width: 100%;
-    display: felx;
+    display: flex;
     flex-direction: row;
+    justify-content: space-between;
     margin: 0px;
 }
 
 #searchField {
     background-color: rgb(255, 255, 255);
-    border: 1px solid rgba(0, 0, 0, 0.7);
-    border-radius: 3px;
+    border: 1px solid rgba(0, 0, 0, 0.60);
+    border-radius: 5px;
     outline: none;
     padding: 5px;
     height: 30px;
@@ -103,6 +122,8 @@ h1 {
     transition: 0.5s;
     color: white;            
     box-shadow: 0 0 20px #eee;
+    box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.3);
+    border: none;
     border-radius: 10px;  
     will-change: transform;
 }

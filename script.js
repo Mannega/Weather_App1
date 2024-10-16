@@ -54,10 +54,11 @@ async function fetchAPI() {
         });
 
         const data = await response.json();
+        console.log(data);
         await fetchImage(data.name);
         setTimeout(() => {
             return;
-        }, 400);
+        }, 1000);
 
         cityNameElement.innerHTML = `<img id="locationIcon" src="https://th.bing.com/th/id/R.1d41d1f32177a1bc5ead6ab2867e2e67?rik=o8s29wXrd9SHwA&riu=http%3a%2f%2fpluspng.com%2fimg-png%2fpng-location-location-black-png-image-4231-1200.png&ehk=kIO1Jynemn%2bb1PmR%2fJgUS4uH4WnLJHrz5SbkNYKmGWA%3d&risl=&pid=ImgRaw&r=0">${data.name}`;
         temperatureElement.innerHTML = `${data.main.temp.toFixed(1)}°${selectedUnit === 'Celsius' ? 'C' : 'F'}`;
