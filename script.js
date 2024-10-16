@@ -25,8 +25,12 @@ let currentCity;
 let selectedUnit;
 
 searchButton.addEventListener('click', event => {
-    currentCity = searchField.value;
-    fetchAPI();
+    if(searchField.value == '') {
+        alert("Search field can't be empty");
+    } else {
+        currentCity = searchField.value;
+        fetchAPI();
+    }
 })
 
 async function fetchAPI() {
