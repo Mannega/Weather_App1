@@ -42,8 +42,10 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    background-color: rgb(28, 39, 68);
+    background-color: rgb(22, 31, 53);
     padding: 15px 10px;
+    background-position: center;
+    background-size: cover;
 }
 
 html {
@@ -55,11 +57,13 @@ h1 {
     font-weight: normal;
     font-size: 4rem;
     margin-bottom: 15px;
+    background-color: rgba(78, 67, 118, 0.2);
+    border-radius: 10px;
 }
 
 #container {
     backdrop-filter: blur(5.5);
-    background-color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.75);
     height: 450px;
     width: 300px;
     transform: scale(1.2);
