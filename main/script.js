@@ -20,7 +20,7 @@ const dateField = document.getElementById("dateField");
 
 const addExpenseButton = document.getElementById("addExpenseButton");
 
-let transactions = [];
+export let transactions = [];
 let transactionChoice;
 
 let thereIsAtrasaction = false;
