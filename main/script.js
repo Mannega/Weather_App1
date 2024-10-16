@@ -21,6 +21,7 @@ const dateField = document.getElementById("dateField");
 const addExpenseButton = document.getElementById("addExpenseButton");
 
 export let transactions = [];
+let transactionNumber = 0;
 let transactionChoice;
 
 let thereIsAtrasaction = false;
@@ -72,6 +73,8 @@ function addTransaction() {
                                    </div>
                                    <div class="category">${transactionCategory}</div>
                                    <div>${transactionChoice == 'expense' ? `-${transactionAmount}` : `+${transactionAmount}`}</div>`;
+        transactions.push(newTransaction);
+        localStorage.setItem(`transaction${transactionNumber}`, newTransaction);
         if(thereIsAtrasaction) {
             transactionsList.prepend(newTransaction);
             
