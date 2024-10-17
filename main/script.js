@@ -78,7 +78,8 @@ function addTransaction() {
             name: transactionName,
             category: transactionCategory,
             amount: transactionAmount,
-            date: transactionDate
+            date: transactionDate,
+            choice: transactionChoice
         }
         transactions.push(transactionObject);
         localStorage.setItem('transactions', (JSON.stringify(transactions)));
