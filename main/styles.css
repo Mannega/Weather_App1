@@ -245,6 +245,7 @@ input, select {
     border: 1px solid #ddd !important;
     background-color: white !important;
     font-size: 1.6rem;
+    cursor: pointer;
 }
 
 input:focus, select:focus {
