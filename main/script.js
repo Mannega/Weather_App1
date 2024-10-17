@@ -21,86 +21,66 @@ const dateField = document.getElementById("dateField");
 const addExpenseButton = document.getElementById("addExpenseButton");
 
 let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
-let transactionNumber = 0;
-let transactionChoice;
-
-let thereIsAtrasaction = false;
+let transactionChoice = '';
 
 expenseChoiceButton.addEventListener("click", event => {
-    if(incomeChoiceButton.classList.contains('selected')) {
+    if (incomeChoiceButton.classList.contains('selected')) {
         incomeChoiceButton.classList.remove('selected');
-        event.target.classList.add('selected');
-        transactionChoice = 'expense';
-    } else {
-        event.target.classList.add('selected');
-        transactionChoice = 'expense';
     }
-})
+    event.target.classList.add('selected');
+    transactionChoice = 'expense';
+});
+
 incomeChoiceButton.addEventListener("click", event => {
-    if(expenseChoiceButton.classList.contains('selected')) {
+    if (expenseChoiceButton.classList.contains('selected')) {
         expenseChoiceButton.classList.remove('selected');
-        event.target.classList.add('selected');
-        transactionChoice = 'income';
-    } else {
-        event.target.classList.add('selected');
-        transactionChoice = 'income';
     }
-})
+    event.target.classList.add('selected');
+    transactionChoice = 'income';
+});
 
 addExpenseButton.addEventListener("click", addTransaction);
 
 function addTransaction() {
     const transactionName = nameField.value;
     const transactionCategory = categorySelect.value;
-    const transactionAmount = amountField.value
+    const transactionAmount = parseFloat(amountField.value);
     const transactionDate = dateField.value;
 
-    if(transactionName == '') {
+    if (transactionName === '') {
         alert("Name field can't be empty");
+        return;
     }
 
-    else if(transactionAmount == 0) {
+    if (transactionChoice === '') {
+        alert("Please choose a transaction type");
+        return;
+    }
+
+    if (transactionAmount === 0) {
         alert("Transaction amount can't be 0");
+        return;
     }
 
-    else if(transactionDate == '') {
-        alert("Please provide a trasaction date");
-    } else {
-        let newTransaction = document.createElement('div');
-        newTransaction.innerHTML = `<div class="name&DateDiv">
-                                        <div class="name">${transactionName}</div>
-                                        <div class="date">${transactionDate}</div>
-                                   </div>
-                                   <div class="category">${transactionCategory}</div>
-                                   <div>${transactionChoice == 'expense' ? `-${transactionAmount}` : `+${transactionAmount}`}</div>`;
-
-        const transactionObject = {
-            name: transactionName,
-            category: transactionCategory,
-            amount: transactionAmount,
-            date: transactionDate,
-            choice: transactionChoice
-        }
-        transactions.push(transactionObject);
-        localStorage.setItem('transactions', (JSON.stringify(transactions)));
-        
-
-        if(thereIsAtrasaction) {
-            transactionsList.prepend(newTransaction);
-            
-            nameField.value = '';
-            categorySelect.selectedIndex = 0;
-            amountField.value = '';
-            dateField.value = '';
-        } else {
-            thereIsAtrasaction = true;
-            transactionsList.innerHTML = ``;
-            transactionsList.prepend(newTransaction);
-
-            nameField.value = '';
-            categorySelect.selectedIndex = 0;
-            amountField.value = '';
-            dateField.value = '';
-        }
+    if (transactionDate === '') {
+        alert("Please provide a transaction date");
+        return;
     }
+
+    const transactionObject = {
+        name: transactionName,
+        category: transactionCategory,
+        amount: transactionAmount,
+        date: transactionDate,
+        choice: transactionChoice
+    };
+
+    transactions.push(transactionObject);
+    localStorage.setItem('transactions', JSON.stringify(transactions));
+
+    // Clear input fields after adding a transaction
+    nameField.value = '';
+    categorySelect.selectedIndex = 0;
+    amountField.value = '';
+    dateField.value = '';
 }

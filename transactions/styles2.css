@@ -74,7 +74,55 @@ h1 {
 }
 
 #transactionsDiv {
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+
+#defaultText {
+    font-size: 2rem;
+    margin-top: 40px;
+    color: rgb(39, 39, 39);
+}
+
+.transactionDiv {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.transactionDiv  div {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    overflow: hidden;
+    white-space: normal;
+}
+
+.name {
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+.date {
+    font-size: 1.2rem;
+    color: rgb(0, 0, 0, 0.8);
+}
+
+.category {
+    font-size: 1.35rem;;
+}
+
+.amount {
+    font-size: 1.7rem;
+}
+
+.greenText {
+    color: rgba(19, 185, 19, 0.95);
+}
+
+.redText {
+    color: rgba(255, 30, 30, 0.95);
 }
