@@ -158,6 +158,10 @@ fieldset {
     height: 32px;
 }
 
+#nameFieldCatSelectDiv select{
+    margin-top: 10px
+}
+
 #amountDateDiv {
     display: flex;
     justify-content: flex-start;
