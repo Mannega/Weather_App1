@@ -27,7 +27,7 @@ let total = parseFloat(localStorage.getItem('total')) || 0;
 // console.log(total, income, expense);
 expenseLabelNumber.textContent = `-$${expense.toFixed(2)}`;
 incomeLabelNumber.textContent = `+$${income.toFixed(2)}`;
-totalBalanceLabelNumber.textContent = `${total < 0 ? `-$${Math.abs(total).toFixed(2)}` : `+$${total.toFixed(2)}`}`;
+totalBalanceLabelNumber.textContent = `${total < 0 ? `-$${Math.abs(total).toFixed(2)}` : `$${total.toFixed(2)}`}`;
 
 let transactions;
 let storedTransactions = localStorage.getItem('transactions');
@@ -100,7 +100,7 @@ function addTransaction() {
         localStorage.setItem('expense', expense);
         localStorage.setItem('total', total);
         expenseLabelNumber.textContent = `-$${expense.toFixed(2)}`;
-        totalBalanceLabelNumber.textContent = `${total < 0 ? `-$${Math.abs(total).toFixed(2)}` : `+$${total.toFixed(2)}`}`;
+        totalBalanceLabelNumber.textContent = `${total < 0 ? `-$${Math.abs(total).toFixed(2)}` : `$${total.toFixed(2)}`}`;
         adjustFontSize();
     } else {
         income += transactionObject.amount;
@@ -109,7 +109,7 @@ function addTransaction() {
         localStorage.setItem('income', income);
         localStorage.setItem('total', total);
         expenseLabelNumber.textContent = `-$${expense.toFixed(2)}`;
-        totalBalanceLabelNumber.textContent = `${total < 0 ? `-$${Math.abs(total).toFixed(2)}` : `+$${total.toFixed(2)}`}`;
+        totalBalanceLabelNumber.textContent = `${total < 0 ? `-$${Math.abs(total).toFixed(2)}` : `$${total.toFixed(2)}`}`;
         adjustFontSize();
     }
 
