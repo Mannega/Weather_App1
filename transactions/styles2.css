@@ -119,13 +119,78 @@ h1 {
 }
 
 .amount {
-    font-size: 1.7rem;
+    font-size: 1.75rem;
 }
 
 .greenText {
-    color: rgba(19, 185, 19, 0.95);
+    color: rgba(0, 202, 0, 0.95);
 }
 
 .redText {
     color: rgba(255, 30, 30, 0.95);
+}
+
+#popup {
+    z-index: -999;
+    opacity: 0%;
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    width: 80%;
+    height: 35%;
+    background-color: white;
+    padding: 10px 25px;
+    background-color: rgb(243, 243, 243);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+#popup h1 {
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+#popup p {
+    font-size: 2rem;
+}
+
+#poputButtonsDiv {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.popupButton {
+    width: 120px;
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    will-change: transform;
+    transition: transform 0.3s ease;
+    
+}
+
+.popupButton:hover {
+    transform: scale(1.2);
+}
+
+#confirmButton {
+    color: white;
+    background-color: rgb(250, 29, 29);
+}
+
+#confirmButton:active {
+    background-color: rgb(184, 28, 28);
+}
+
+#cancelButton {
+    background-color: rgb(161, 153, 153);
+}
+
+#cancelButton:active {
+    background-color: rgb(102, 97, 97);
 }
