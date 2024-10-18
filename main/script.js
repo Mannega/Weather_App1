@@ -23,6 +23,7 @@ const addExpenseButton = document.getElementById("addExpenseButton");
 let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
 let transactionChoice = '';
 
+expenseChoiceButton.classList.add('selected');
 expenseChoiceButton.addEventListener("click", event => {
     if (incomeChoiceButton.classList.contains('selected')) {
         incomeChoiceButton.classList.remove('selected');

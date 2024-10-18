@@ -92,6 +92,9 @@ h1 {
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 15px;
+    padding: 10px;
+    background-color: rgba(194, 191, 191, 0.7);
+    border-radius: 5px;
 }
 
 .transactionDiv  div {

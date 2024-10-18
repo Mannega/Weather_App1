@@ -258,6 +258,7 @@ select {
 
 .selected {
     background-color: rgb(202, 201, 201) !important;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.4);
 }
 
 @media screen and (min-height: 700px) {
