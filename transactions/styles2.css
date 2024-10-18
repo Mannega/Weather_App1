@@ -51,6 +51,7 @@ h1 {
 
 #filtersDiv {
     display: flex;
+    flex-direction: row;
     gap: 10%;
     margin-bottom: 20px;
 }
@@ -65,7 +66,8 @@ h1 {
     margin-top: 5px;
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 3px;
-    cursor: pointer;;
+    cursor: pointer;
+    width: 25vw;
 }
 
 #filtersDiv select:focus {
@@ -128,6 +130,16 @@ h1 {
 
 .redText {
     color: rgba(255, 30, 30, 0.95);
+}
+
+#clearButton {
+    height: 25px;
+    width: 28vw;
+    margin-top: 16px;
+    border: none;
+    color: white;
+    border-radius: 3px;
+    background-color: rgb(255, 3, 3);
 }
 
 #popup {
