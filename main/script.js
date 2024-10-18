@@ -29,7 +29,14 @@ expenseLabelNumber.textContent = `-$${expense.toFixed(2)}`;
 incomeLabelNumber.textContent = `+$${income.toFixed(2)}`;
 totalBalanceLabelNumber.textContent = `${total < 0 ? `-$${Math.abs(total).toFixed(2)}` : `+$${total.toFixed(2)}`}`;
 
-let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+let transactions;
+let storedTransactions = localStorage.getItem('transactions');
+if(storedTransactions && storedTransactions !== null) {
+    transactions = JSON.parse(storedTransactions)
+} else {
+    transactions = [];
+}
+
 let transactionChoice = '';
 
 expenseChoiceButton.classList.add('selected');

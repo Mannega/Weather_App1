@@ -46,7 +46,7 @@ clearButton.addEventListener("click", event => {
     confirmButton.removeEventListener("click", hidePopup);
     confirmButton.addEventListener("click", () => {
         hidePopup().then(() => {
-            transactionDiv.innerHTML = ``;
+            transactionDiv.innerHTML = `<p id="defaultText">There are no transactions right now</p>`;
             transactions = [];
             localStorage.setItem('transactions', transactions);
             localStorage.setItem('total', 0);
