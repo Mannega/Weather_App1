@@ -3,7 +3,7 @@
 <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500;600;700&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expense Tracker</title>
@@ -11,54 +11,29 @@
 </head>
 <body>
     <h1>Expense Tracker</h1>
-   <div id="container">
+    <div id="container">
         <header>
             <div id="totalBalance">
                 <p class="smallText" id="totalBalanceLabelText">Total Balance</p>
-                <p   class="bigText" id="totalBalanceLabelNumber">$0.00</p>
+                <p class="bigText" id="totalBalanceLabelNumber">$0.00</p>
             </div>
             <div id="incomeExpense">
                 <div id="income">
                     <p class="smallText" id="incomeLabelText">Income</p>
-                    <p  class="mediumText" id="incomeLabelNumber">&plus;$0.00</p>
+                    <p class="mediumText" id="incomeLabelNumber">&plus;$0.00</p>
                 </div>
                 <div id="Expense">
                     <p class="smallText" id="expenseLabelText">Expense</p>
-                    <p  class="mediumText" id="expenseLabel">&minus;$0.00</p>
+                    <p class="mediumText" id="expenseLabel">&minus;$0.00</p>
                 </div>
             </div>
         </header>
         <main>
             <fieldset id="transactions">
                 <div id="transactionFilterDiv">
-                    <legend>Transactions</legend>
-                    <div id="transactionFilters">
-                        <label for="transactionFilterSelect" id="transactionFilterLabel">Filter by type
-                            <select id="transactionFilterSelect" name="selectedFilter">
-                                <option value="All">All</option>
-                                <option value="Income">Income</option>
-                                <option value="Expenses">Expenses</option>
-                            </select>
-                            </label>
-                        <label for="categoryField" id="categoryFieldLabel">Category
-                            <select id="categoryField" name="categoryField">
-                                <option value="Food">Food</option>
-                                <option value="Utilities">Utilities</option>
-                                <option value="Rent">Rent/Mortgage</option>
-                                <option value="Transportation">Transportation</option>
-                                <option value="Entertainment">Entertainment</option>
-                                <option value="Health">Health</option>
-                                <option value="Shopping">Shopping</option>
-                                <option value="Education">Education</option>
-                                <option value="Travel">Travel</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </label>  
-                    </div>
+                    <legend style="text-align: left;">Transactions</legend>
+                    <p>Go to <a href="../transactions/transactions.html" target="_blank">Transactions Page</a></p>
                 </div>
-                <ul id="transactionList">
-                    <li class="ulPlaceholder">There are no trasactions right now</li>
-                </ul>
             </fieldset>
             <fieldset id="addTransaction">
                 <legend>Add Transaction</legend>
@@ -69,17 +44,17 @@
                 <div id="nameFieldCatSelectDiv">
                     <label for="nameField" id="nameFieldLabel">Name<br> <input id="nameField" type="text" required></label>
                     <label for="categorySelect" id="categorySelectLabel">Category <br>
-                            <select id="categorySelect" name="category">
-                                <option value="Food">Food</option>
-                                <option value="Utilities">Utilities</option>
-                                <option value="Transportation">Transportation</option>
-                                <option value="Rent">Rent</option>
-                                <option value="Entertainment">Entertainment</option>
-                                <option value="Health">Health</option>
-                                <option value="Other">Other</option>
-                            </select>
-                    </label>                
-                    </div>
+                        <select id="categorySelect" name="category">
+                            <option value="Food">Food</option>
+                            <option value="Utilities">Utilities</option>
+                            <option value="Transportation">Transportation</option>
+                            <option value="Rent">Rent</option>
+                            <option value="Entertainment">Entertainment</option>
+                            <option value="Health">Health</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </label>
+                </div>
                 <div id="amountDateDiv">
                     <label for="amountField" id="amountFieldLabel">Amount <input id="amountField" type="number" required></label>
                     <label for="dateField" id="dateFieldLabel">Date <input id="dateField" type="date" required></label>
@@ -87,7 +62,7 @@
                 <button id="addExpenseButton">Add</button>
             </fieldset>
         </main>
-   </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

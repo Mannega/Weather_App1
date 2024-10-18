@@ -1,6 +1,12 @@
 let transactionDiv = document.getElementById('transactionsDiv');
 const filterByTypeSelect = document.getElementById('filterByTypeSelect');
 const filterByCategorySelect = document.getElementById('filterByCategorySelect');
+const clearButton = document.getElementById('clearButton');
+
+let popupPurpose = '';
+const popupDiv = document.getElementById('popup');
+const confirmButton = document.getElementById('confirmButton');
+const cancelButton = document.getElementById('cancelButton');
 
 let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
 if(transactions.length < 1) {
@@ -21,3 +27,29 @@ transactions.forEach(transactionObject => {
 })
 
 console.log(transactions);
+
+clearButton.addEventListener("click", event => {
+    popupDiv.style.zIndex = '999';
+    popupDiv.style.opacity = '100%'
+    popupPurpose = 'clear';
+    confirmButton.removeEventListener("click", hidePopup)
+    confirmButton.addEventListener("click", () => {
+        hidePopup().then(() => {
+            transactionDiv.innerHTML = ``;
+        })
+    });
+})
+
+function hidePopup() {
+    if(popupPurpose == 'clear') {
+        popupDiv.style.opacity = '0%';
+        return new Promise(resolve => {
+            popupDiv.removeEventListener("transitionend",  hidePopupHandler)
+            popupDiv.addEventListener('transitionend', hidePopupHandler)
+            function hidePopupHandler(event) {
+                event.target.style.zIndex = '-999';
+                resolve();
+            }
+        })
+    }
+}
