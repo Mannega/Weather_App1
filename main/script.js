@@ -24,6 +24,7 @@ let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
 let transactionChoice = '';
 
 expenseChoiceButton.classList.add('selected');
+transactionChoice = 'expense';
 expenseChoiceButton.addEventListener("click", event => {
     if (incomeChoiceButton.classList.contains('selected')) {
         incomeChoiceButton.classList.remove('selected');
