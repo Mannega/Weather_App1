@@ -29,6 +29,7 @@ transactions.forEach(transactionObject => {
 console.log(transactions);
 
 clearButton.addEventListener("click", event => {
+    popupDiv.style.transition = 'opacity 0.3s ease'
     popupDiv.style.zIndex = '999';
     popupDiv.style.opacity = '100%'
     popupPurpose = 'clear';
