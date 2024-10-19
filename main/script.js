@@ -21,6 +21,8 @@ const dateField = document.getElementById("dateField");
 
 const addExpenseButton = document.getElementById("addExpenseButton");
 
+const addTransactionLegend = document.getElementById('addTransactionLegend');
+
 let income = parseFloat(localStorage.getItem('income')) || 0;
 let expense = parseFloat(localStorage.getItem('expense')) || 0;
 let total = parseFloat(localStorage.getItem('total')) || 0;
@@ -102,6 +104,7 @@ function addTransaction() {
         expenseLabelNumber.textContent = `-$${expense.toFixed(2)}`;
         totalBalanceLabelNumber.textContent = `${total < 0 ? `-$${Math.abs(total).toFixed(2)}` : `$${total.toFixed(2)}`}`;
         adjustFontSize();
+        transactionSuccess();   
     } else {
         income += transactionObject.amount;
         incomeLabelNumber.textContent = `+$${income.toFixed(2)}`;
@@ -111,6 +114,7 @@ function addTransaction() {
         expenseLabelNumber.textContent = `-$${expense.toFixed(2)}`;
         totalBalanceLabelNumber.textContent = `${total < 0 ? `-$${Math.abs(total).toFixed(2)}` : `$${total.toFixed(2)}`}`;
         adjustFontSize();
+        transactionSuccess();   
     }
 
     transactions.push(transactionObject);
@@ -156,3 +160,22 @@ function adjustFontSize() {
 }
 
 // console.log(totalBalanceLabelNumber.textContent.length)
+
+function transactionSuccess() {
+    addTransactionLegend.innerHTML = `Add Transaction <span id="transactionSuccess" class="transactionSuccess">Added Transaction!</span>`;
+    const text = document.getElementById('transactionSuccess');
+    text.style.opacity = '0%';
+    text.style.transition = `opacity 0.6s ease`;
+    requestAnimationFrame(() => {
+        text.style.opacity = '100%';
+    })
+    setTimeout(() => {
+        hideText()
+    }, 3500);
+    function hideText() {
+        text.style.opacity = '0%';
+        setTimeout(() => {Donation
+            text.remove();
+        }, 700);
+    }
+}
