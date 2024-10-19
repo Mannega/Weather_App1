@@ -9,6 +9,16 @@ const popupDiv = document.getElementById('popup');
 const confirmButton = document.getElementById('confirmButton');
 const cancelButton = document.getElementById('cancelButton');
 
+let categoryObject = {
+    foodTransactions: [],
+    utilitiesTransactions: [],
+    transportationTransactions: [],
+    rentTransactions: [],
+    entertainmentTransactions: [],
+    healthTransactions: [],
+    otherTransactions: []
+}
+
 let incomeTransactions = [];
 let expenseTransactions = [];
 let transactions;
@@ -25,20 +35,25 @@ if(transactions.length < 1) {
     filterByTypeSelect.value = 'All';
     transactions.forEach(showAllTransactions);
 }
-
+let currentFilterByType = '';
+let currentFilterByCategory = '';
 
 function sortByType(event) {
+    transactionDiv.innerHTML = ``;
     if(event.target.value == 'All') {
         transactionDiv.innerHTML = ``;
         transactions.forEach(showAllTransactions);
+        currentFilterByType = 'All';
     }
     else if(event.target.value == 'Income') {
         transactionDiv.innerHTML = ``;
         incomeTransactions.forEach(showIncomeTransactions)
+        currentFilterByType = 'Income';
     }
      else if(event.target.value == 'Expenses') {
         transactionDiv.innerHTML = ``;
         expenseTransactions.forEach(showExpenseTransactions);
+        currentFilterByType = 'Expenses';
     }
 }
 filterByTypeSelect.removeEventListener("change", sortByType);
@@ -91,6 +106,54 @@ function showExpenseTransactions(transactionObject) {
                                    <div class="amount redText">-$${amount.toFixed(2)}</div>`;
     transactionDiv.prepend(newTransactionElement);
 }
+
+function displayFilteredTransactions(transactionObject) {
+    const newTransactionElement = document.createElement('div');
+    newTransactionElement.classList.add('transactionDiv');
+    let amount = parseFloat(transactionObject.amount);
+    newTransactionElement.innerHTML = `<div class="name&DateDiv">
+                                        <div class="name">${transactionObject.name}</div>
+                                        <div class="date">${transactionObject.date}</div>
+                                   </div>
+                                   <div class="category">${transactionObject.category}</div>
+                                   <div class="amount ${transactionObject.choice == 'expense' ? 'redText' : 'greenText'}">${transactionObject.choice == 'expense' ? `-$${amount.toFixed(2)}` : `+$${amount.toFixed(2)}`}</div>`;
+    transactionDiv.prepend(newTransactionElement);
+}
+
+function sortByCategoryHandler(categoryName, transactionType) {
+    let transactionsArray = [];
+    switch(transactionType) {
+        case 'Income':
+            incomeTransactions.forEach((transaction) => {
+                if(transaction.category == categoryName) {
+                    transactionsArray.push(transaction);
+                }
+            })
+            break;
+        case 'Expenses':
+            expenseTransactions.forEach(transaction => {
+                if(transaction.category == categoryName) {
+                    transactionsArray.push(transaction);
+                }
+            })
+            break;
+    }
+    return transactionsArray;
+}
+
+function sortByCategory(event) {
+    let categoryName = event.target.value;
+    let filteredTransactions = sortByCategoryHandler(categoryName, currentFilterByType);
+    transactionDiv.innerHTML = ``;
+    if(currentFilterByType) {
+        transactionDiv.innerHTML = ``;
+        filteredTransactions.forEach(displayFilteredTransactions);
+    
+    }
+}
+filterByCategorySelect.removeEventListener("change", sortByCategory);
+filterByCategorySelect.addEventListener("change", sortByCategory);
+
 
 backToMainPageButton.removeEventListener("click", backToMainPage);
 backToMainPageButton.addEventListener("click", backToMainPage);
@@ -147,4 +210,4 @@ function cancelPopup() {
             resolve();
         }
     })
-}
+} 
