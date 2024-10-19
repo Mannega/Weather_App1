@@ -38,6 +38,8 @@ if(transactions.length < 1) {
 let currentFilterByType = '';
 let currentFilterByCategory = '';
 
+filterByTypeSelect.removeEventListener("change", sortByType);
+filterByTypeSelect.addEventListener("change", sortByType);
 function sortByType(event) {
     transactionDiv.innerHTML = ``;
     if(event.target.value == 'All') {
@@ -56,8 +58,6 @@ function sortByType(event) {
         currentFilterByType = 'Expenses';
     }
 }
-filterByTypeSelect.removeEventListener("change", sortByType);
-filterByTypeSelect.addEventListener("change", sortByType);
 
 // transactions.forEach(showAllTransactions)
 function showAllTransactions(transactionObject) {
@@ -82,6 +82,7 @@ console.log(incomeTransactions);
 console.log(transactions);
 
 function showIncomeTransactions(transactionObject) {
+    // transactionDiv.innerHTML = ``;
     const newTransactionElement = document.createElement('div');
     newTransactionElement.classList.add('transactionDiv');
     let amount = parseFloat(transactionObject.amount);
@@ -95,6 +96,7 @@ function showIncomeTransactions(transactionObject) {
 }
 
 function showExpenseTransactions(transactionObject) {
+    // transactionDiv.innerHTML = ``;
     const newTransactionElement = document.createElement('div');
     newTransactionElement.classList.add('transactionDiv');
     let amount = parseFloat(transactionObject.amount);
