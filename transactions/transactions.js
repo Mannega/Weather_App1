@@ -9,6 +9,8 @@ const popupDiv = document.getElementById('popup');
 const confirmButton = document.getElementById('confirmButton');
 const cancelButton = document.getElementById('cancelButton');
 
+let incomeTransactions = [];
+let expenseTransactions = [];
 let transactions;
 try {
     let storedTransactions = localStorage.getItem('transactions');
@@ -19,9 +21,31 @@ try {
 }
 if(transactions.length < 1) {
     transactionDiv.innerHTML = `<p id="defaultText">There are no transactions right now</p>`
+} else {
+    filterByTypeSelect.value = 'All';
+    transactions.forEach(showAllTransactions);
 }
 
-transactions.forEach(transactionObject => {
+
+function sortByType(event) {
+    if(event.target.value == 'All') {
+        transactionDiv.innerHTML = ``;
+        transactions.forEach(showAllTransactions);
+    }
+    else if(event.target.value == 'Income') {
+        transactionDiv.innerHTML = ``;
+        incomeTransactions.forEach(showIncomeTransactions)
+    }
+     else if(event.target.value == 'Expenses') {
+        transactionDiv.innerHTML = ``;
+        expenseTransactions.forEach(showExpenseTransactions);
+    }
+}
+filterByTypeSelect.removeEventListener("change", sortByType);
+filterByTypeSelect.addEventListener("change", sortByType);
+
+// transactions.forEach(showAllTransactions)
+function showAllTransactions(transactionObject) {
     const newTransactionElement = document.createElement('div');
     newTransactionElement.classList.add('transactionDiv');
     let amount = parseFloat(transactionObject.amount);
@@ -32,9 +56,41 @@ transactions.forEach(transactionObject => {
                                    <div class="category">${transactionObject.category}</div>
                                    <div class="amount ${transactionObject.choice == 'expense' ? 'redText' : 'greenText'}">${transactionObject.choice == 'expense' ? `-$${amount.toFixed(2)}` : `+$${amount.toFixed(2)}`}</div>`;
     transactionDiv.prepend(newTransactionElement);
-})
-
+    if(transactionObject.choice == 'expense') {
+        expenseTransactions.unshift(transactionObject);
+    } else {
+        incomeTransactions.unshift(transactionObject);
+    }
+}
+console.log(expenseTransactions);
+console.log(incomeTransactions);
 console.log(transactions);
+
+function showIncomeTransactions(transactionObject) {
+    const newTransactionElement = document.createElement('div');
+    newTransactionElement.classList.add('transactionDiv');
+    let amount = parseFloat(transactionObject.amount);
+    newTransactionElement.innerHTML = `<div class="name&DateDiv">
+                                        <div class="name">${transactionObject.name}</div>
+                                        <div class="date">${transactionObject.date}</div>
+                                   </div>
+                                   <div class="category">${transactionObject.category}</div>
+                                   <div class="amount greenText">+$${amount.toFixed(2)}</div>`;
+    transactionDiv.prepend(newTransactionElement);
+}
+
+function showExpenseTransactions(transactionObject) {
+    const newTransactionElement = document.createElement('div');
+    newTransactionElement.classList.add('transactionDiv');
+    let amount = parseFloat(transactionObject.amount);
+    newTransactionElement.innerHTML = `<div class="name&DateDiv">
+                                        <div class="name">${transactionObject.name}</div>
+                                        <div class="date">${transactionObject.date}</div>
+                                   </div>
+                                   <div class="category">${transactionObject.category}</div>
+                                   <div class="amount redText">-$${amount.toFixed(2)}</div>`;
+    transactionDiv.prepend(newTransactionElement);
+}
 
 backToMainPageButton.removeEventListener("click", backToMainPage);
 backToMainPageButton.addEventListener("click", backToMainPage);
