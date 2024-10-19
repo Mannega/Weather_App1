@@ -2,6 +2,7 @@ let transactionDiv = document.getElementById('transactionsDiv');
 const filterByTypeSelect = document.getElementById('filterByTypeSelect');
 const filterByCategorySelect = document.getElementById('filterByCategorySelect');
 const clearButton = document.getElementById('clearButton');
+const backToMainPageButton = document.getElementById('backToMainPageButton');
 
 let popupPurpose = '';
 const popupDiv = document.getElementById('popup');
@@ -34,6 +35,12 @@ transactions.forEach(transactionObject => {
 })
 
 console.log(transactions);
+
+backToMainPageButton.removeEventListener("click", backToMainPage);
+backToMainPageButton.addEventListener("click", backToMainPage);
+function backToMainPage() {
+    window.location.href = '../main/index.html';
+}
 
 clearButton.addEventListener("click", event => {
     popupDiv.style.transition = 'opacity 0.3s ease'
