@@ -96,7 +96,7 @@ h1 {
     justify-content: space-between;
     margin-bottom: 15px;
     padding: 10px;
-    background-color: rgba(194, 191, 191, 0.7);
+    background-color: rgba(214, 207, 207, 0.7);
     border-radius: 5px;
 }
 
@@ -126,7 +126,7 @@ h1 {
 }
 
 .greenText {
-    color: rgba(0, 202, 0, 0.95);
+    color: rgba(3, 211, 3, 0.95);
 }
 
 .redText {
