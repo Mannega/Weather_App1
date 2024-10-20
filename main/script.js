@@ -130,25 +130,25 @@ setInterval(() => {
     adjustFontSize();
 }, 100);
 
-// console.log(expenseLabelNumber.textContent.length) 
-// console.log(incomeLabelNumber.textContent.length) 
+console.log(expenseLabelNumber.textContent.length) 
+console.log(incomeLabelNumber.textContent.length) 
 
 function adjustFontSize() {
     incomeLabelNumber.style.fontSize = '2.5rem';
     expenseLabelNumber.style.fontSize = '2.5rem';
 
-    if (incomeLabelNumber.textContent.length > 6) {
+    if (incomeLabelNumber.textContent.length > 9) {
         incomeLabelNumber.classList.remove('mediumText');
         incomeExpenseDiv.style.gap = '10%'
         incomeLabelNumber.style.fontSize = '2.3rem';
     } else {
         incomeLabelNumber.classList.add('mediumText');
     }
-    if (expenseLabelNumber.textContent.length > 6) {
+    if (expenseLabelNumber.textContent.length > 9) {
         expenseLabelNumber.classList.remove('mediumText');
         expenseLabelNumber.style.fontSize = '2.3rem';
     } else {
-        expenseLabelNumber.classList.remove('mediumText');
+        expenseLabelNumber.classList.add('mediumText');
     }
     if(totalBalanceLabelNumber.textContent.length > 12) {
         totalBalanceLabelNumber.classList.remove('bigText');
