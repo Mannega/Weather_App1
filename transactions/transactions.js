@@ -44,6 +44,8 @@ function sortByType(event) {
     transactionDiv.innerHTML = ``;
     if(event.target.value == 'All') {
         transactionDiv.innerHTML = ``;
+        expenseTransactions = [];
+        incomeTransactions = [];
         transactions.forEach(showAllTransactions);
         currentFilterByType = 'All';
     }
