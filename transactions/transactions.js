@@ -35,8 +35,8 @@ if(transactions.length < 1) {
     filterByTypeSelect.value = 'All';
     transactions.forEach(showAllTransactions);
 }
-let currentFilterByType = '';
-let currentFilterByCategory = '';
+let currentFilterByType = 'All';
+let currentFilterByCategory = 'All';
 
 filterByTypeSelect.removeEventListener("change", sortByType);
 filterByTypeSelect.addEventListener("change", sortByType);
@@ -126,34 +126,56 @@ function displayFilteredTransactions(transactionObject) {
 
 function sortByCategoryHandler(categoryName, transactionType) {
     let transactionsArray = [];
+    if (categoryName === 'All') {
+        if(transactionType === 'All') {
+            return transactions; 
+        } else if(transactionType === 'Income') {
+            return incomeTransactions;
+        } else {
+            return expenseTransactions;
+        }
+    }
+
     switch(transactionType) {
         case 'Income':
-            incomeTransactions.forEach((transaction) => {
-                if(transaction.category == categoryName) {
+            incomeTransactions.forEach(transaction => {
+                if(transaction.category === categoryName) {
                     transactionsArray.push(transaction);
                 }
-            })
+            });
             break;
         case 'Expenses':
             expenseTransactions.forEach(transaction => {
-                if(transaction.category == categoryName) {
+                if(transaction.category === categoryName) {
                     transactionsArray.push(transaction);
                 }
-            })
+            });
             break;
+        default:
+            transactions.forEach(transaction => {
+                if(transaction.category === categoryName) {
+                    transactionsArray.push(transaction);
+                }
+            });
     }
     return transactionsArray;
 }
 
 function sortByCategory(event) {
+    console.log('working...')
     let categoryName = event.target.value;
+    console.log(categoryName);
     let filteredTransactions = sortByCategoryHandler(categoryName, currentFilterByType);
+    console.log(filteredTransactions);
     transactionDiv.innerHTML = ``;
-    if(currentFilterByType) {
         transactionDiv.innerHTML = ``;
+    if(filteredTransactions.length > 0) {
         filteredTransactions.forEach(displayFilteredTransactions);
-    
+    } else {
+        transactionDiv.innerHTML = `<p class="defaultText">No transactions found for this category and transaction type.</p>`;
     }
+    
+    
 }
 filterByCategorySelect.removeEventListener("change", sortByCategory);
 filterByCategorySelect.addEventListener("change", sortByCategory);
@@ -176,7 +198,7 @@ clearButton.addEventListener("click", event => {
     confirmButton.removeEventListener("click", hidePopup);
     confirmButton.addEventListener("click", () => {
         hidePopup().then(() => {
-            transactionDiv.innerHTML = `<p id="defaultText">There are no transactions right now</p>`;
+            transactionDiv.innerHTML = `<p class="defaultText">There are no transactions right now</p>`;
             transactions = [];
             localStorage.setItem('transactions', transactions);
             localStorage.setItem('total', 0);

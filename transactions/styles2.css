@@ -83,7 +83,7 @@ h1 {
     gap: 20px;
 }
 
-#defaultText {
+.defaultText {
     font-size: 2rem;
     margin-top: 40px;
     color: rgb(39, 39, 39);
