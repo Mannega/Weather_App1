@@ -35,6 +35,7 @@ if(transactions.length < 1) {
     filterByTypeSelect.value = 'All';
     transactions.forEach(showAllTransactions);
 }
+
 let currentFilterByType = 'All';
 let currentFilterByCategory = 'All';
 
@@ -42,22 +43,55 @@ filterByTypeSelect.removeEventListener("change", sortByType);
 filterByTypeSelect.addEventListener("change", sortByType);
 function sortByType(event) {
     transactionDiv.innerHTML = ``;
+    let newTransactions = [];
+    console.log(incomeTransactions, expenseTransactions);
+
     if(event.target.value == 'All') {
-        transactionDiv.innerHTML = ``;
-        expenseTransactions = [];
-        incomeTransactions = [];
-        transactions.forEach(showAllTransactions);
+        if(currentFilterByCategory != 'All') {
+            transactions.forEach(transaction => {
+                if(transaction.category == currentFilterByCategory) {
+                    newTransactions.push(transaction);
+                }
+            });
+        } else {
+            incomeTransactions = [];
+            expenseTransactions = [];
+            transactions.forEach(showAllTransactions);
+            return;
+        }
         currentFilterByType = 'All';
     }
     else if(event.target.value == 'Income') {
-        transactionDiv.innerHTML = ``;
-        incomeTransactions.forEach(showIncomeTransactions)
+            if(currentFilterByCategory != 'All') {
+                incomeTransactions.forEach(transaction => {
+                    if(transaction.category == currentFilterByCategory) {
+                        newTransactions.push(transaction);
+                    }
+            });
+        } else {
+            incomeTransactions.forEach(showIncomeTransactions);
+            return;
+        }
         currentFilterByType = 'Income';
     }
      else if(event.target.value == 'Expenses') {
-        transactionDiv.innerHTML = ``;
-        expenseTransactions.forEach(showExpenseTransactions);
+        if(currentFilterByCategory != 'All') {
+            expenseTransactions.forEach(transaction => {
+                if(transaction.category == currentFilterByCategory) {
+                    newTransactions.push(transaction);
+                }
+            });
+        } else {
+            expenseTransactions.forEach(showExpenseTransactions);
+            return;
+        }
+      
         currentFilterByType = 'Expenses';
+    }
+    if(newTransactions.length < 1) {
+        transactionDiv.innerHTML = `<p class="defaultText">No transactions found for this category and transaction type</p>`
+    } else {
+        newTransactions.forEach(displayFilteredTransactions);
     }
 }
 
@@ -164,6 +198,7 @@ function sortByCategoryHandler(categoryName, transactionType) {
 function sortByCategory(event) {
     console.log('working...')
     let categoryName = event.target.value;
+    currentFilterByCategory = categoryName;
     console.log(categoryName);
     let filteredTransactions = sortByCategoryHandler(categoryName, currentFilterByType);
     console.log(filteredTransactions);
@@ -172,7 +207,7 @@ function sortByCategory(event) {
     if(filteredTransactions.length > 0) {
         filteredTransactions.forEach(displayFilteredTransactions);
     } else {
-        transactionDiv.innerHTML = `<p class="defaultText">No transactions found for this category and transaction type.</p>`;
+        transactionDiv.innerHTML = `<p class="defaultText">No transactions found for this category and transaction type</p>`;
     }
     
     
