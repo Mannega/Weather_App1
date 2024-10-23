@@ -82,6 +82,7 @@ function sortByType(event) {
                 }
             });
         } else {
+            console.log(expenseTransactions);
             expenseTransactions.forEach(showExpenseTransactions);
             return;
         }
@@ -128,7 +129,7 @@ function showIncomeTransactions(transactionObject) {
                                    </div>
                                    <div class="category">${transactionObject.category}</div>
                                    <div class="amount greenText">+$${amount.toFixed(2)}</div>`;
-    transactionDiv.prepend(newTransactionElement);
+    transactionDiv.append(newTransactionElement);
 }
 
 function showExpenseTransactions(transactionObject) {
@@ -142,7 +143,7 @@ function showExpenseTransactions(transactionObject) {
                                    </div>
                                    <div class="category">${transactionObject.category}</div>
                                    <div class="amount redText">-$${amount.toFixed(2)}</div>`;
-    transactionDiv.prepend(newTransactionElement);
+    transactionDiv.append(newTransactionElement);
 }
 
 function displayFilteredTransactions(transactionObject) {
