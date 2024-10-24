@@ -70,6 +70,7 @@ function sortByType(event) {
             });
         } else {
             incomeTransactions.forEach(showIncomeTransactions);
+            currentFilterByType = 'Income';
             return;
         }
         currentFilterByType = 'Income';
@@ -82,8 +83,8 @@ function sortByType(event) {
                 }
             });
         } else {
-            console.log(expenseTransactions);
             expenseTransactions.forEach(showExpenseTransactions);
+            currentFilterByType = 'Expenses';
             return;
         }
       
@@ -193,6 +194,7 @@ function sortByCategoryHandler(categoryName, transactionType) {
                 }
             });
     }
+    console.log(currentFilterByType);
     return transactionsArray;
 }
 
