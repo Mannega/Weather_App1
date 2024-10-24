@@ -99,7 +99,8 @@ fieldset {
 }
 
 #transactions p {
-    font-size: 1.8rem;
+    font-size: 2rem;
+    margin-top: 10px;
 }
 
 #transactions a {
@@ -109,6 +110,7 @@ fieldset {
 #addTransaction {
     display: flex;
     flex-direction: column;
+    margin-top: 30px;
 }
 
 #addTransaction legend {
