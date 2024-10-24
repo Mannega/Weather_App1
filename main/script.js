@@ -44,6 +44,7 @@ let transactionChoice = '';
 expenseChoiceButton.classList.add('selected');
 transactionChoice = 'expense';
 expenseChoiceButton.addEventListener("click", event => {
+    event.preventDefault();
     if (incomeChoiceButton.classList.contains('selected')) {
         incomeChoiceButton.classList.remove('selected');
     }
@@ -52,6 +53,7 @@ expenseChoiceButton.addEventListener("click", event => {
 });
 
 incomeChoiceButton.addEventListener("click", event => {
+    event.preventDefault();
     if (expenseChoiceButton.classList.contains('selected')) {
         expenseChoiceButton.classList.remove('selected');
     }
