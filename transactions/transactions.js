@@ -30,7 +30,7 @@ try {
     transactions = [];
 }
 if(transactions.length < 1) {
-    transactionDiv.innerHTML = `<p id="defaultText">There are no transactions right now</p>`
+    transactionDiv.innerHTML = `<p class="defaultText">There are no transactions right now</p>`;
 } else {
     filterByTypeSelect.value = 'All';
     transactions.forEach(showAllTransactions);
@@ -273,3 +273,5 @@ function cancelPopup() {
         }
     })
 } 
+
+// alert(`Width: ${window.innerWidth} \nheight: ${window.innerHeight}`);
