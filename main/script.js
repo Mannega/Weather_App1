@@ -179,3 +179,5 @@ function transactionSuccess() {
         }, 700);
     }
 }
+
+// alert(`Width: ${window.innerWidth} \n height: ${window.innerHeight}`);

@@ -274,4 +274,4 @@ function cancelPopup() {
     })
 } 
 
-// alert(`Width: ${window.innerWidth} \nheight: ${window.innerHeight}`);
+// alert(`Width: ${window.innerWidth} \n height: ${window.innerHeight}`);
