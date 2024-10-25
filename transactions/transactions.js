@@ -3,6 +3,8 @@ const filterByTypeSelect = document.getElementById('filterByTypeSelect');
 const filterByCategorySelect = document.getElementById('filterByCategorySelect');
 const clearButton = document.getElementById('clearButton');
 const backToMainPageButton = document.getElementById('backToMainPageButton');
+const deleteButtonsHTMLCollection = document.getElementsByClassName('delete');
+let deleteButtons;
 
 let popupPurpose = '';
 const popupDiv = document.getElementById('popup');
@@ -102,6 +104,10 @@ function showAllTransactions(transactionObject) {
     const newTransactionElement = document.createElement('div');
     newTransactionElement.classList.add('transactionDiv');
     let amount = parseFloat(transactionObject.amount);
+    newTransactionElement.dataset.name = transactionObject.name;
+    newTransactionElement.dataset.date = transactionObject.date;
+    newTransactionElement.dataset.amount = transactionObject.amount;
+    newTransactionElement.dataset.category = transactionObject.category;
     newTransactionElement.innerHTML = `<div class="name&DateDiv">
                                         <div class="name">${transactionObject.name}</div>
                                         <div class="date">${transactionObject.date}</div>
@@ -126,12 +132,18 @@ function showIncomeTransactions(transactionObject) {
     const newTransactionElement = document.createElement('div');
     newTransactionElement.classList.add('transactionDiv');
     let amount = parseFloat(transactionObject.amount);
+    newTransactionElement.dataset.name = transactionObject.name;
+    newTransactionElement.dataset.date = transactionObject.date;
+    newTransactionElement.dataset.amount = amount;
+    newTransactionElement.dataset.category = transactionObject.category;
     newTransactionElement.innerHTML = `<div class="name&DateDiv">
                                         <div class="name">${transactionObject.name}</div>
                                         <div class="date">${transactionObject.date}</div>
                                    </div>
                                    <div class="category">${transactionObject.category}</div>
-                                   <div class="amount greenText">+$${amount.toFixed(2)}</div>`;
+                                   <div class="amountAndDelete"><div class="amount ${transactionObject.choice == 'expense' ? 'redText' : 'greenText'}">${transactionObject.choice == 'expense' ? `-$${amount.toFixed(2)}` : `+$${amount.toFixed(2)}`}</div>
+                                   <div class="delete">x</div>
+                                   </div>`;
     transactionDiv.append(newTransactionElement);
 }
 
@@ -140,12 +152,18 @@ function showExpenseTransactions(transactionObject) {
     const newTransactionElement = document.createElement('div');
     newTransactionElement.classList.add('transactionDiv');
     let amount = parseFloat(transactionObject.amount);
+    newTransactionElement.dataset.name = transactionObject.name;
+    newTransactionElement.dataset.date = transactionObject.date;
+    newTransactionElement.dataset.amount = amount;
+    newTransactionElement.dataset.category = transactionObject.category;
     newTransactionElement.innerHTML = `<div class="name&DateDiv">
                                         <div class="name">${transactionObject.name}</div>
                                         <div class="date">${transactionObject.date}</div>
                                    </div>
                                    <div class="category">${transactionObject.category}</div>
-                                   <div class="amount redText">-$${amount.toFixed(2)}</div>`;
+                                   <<div class="amountAndDelete"><div class="amount ${transactionObject.choice == 'expense' ? 'redText' : 'greenText'}">${transactionObject.choice == 'expense' ? `-$${amount.toFixed(2)}` : `+$${amount.toFixed(2)}`}</div>
+                                   <div class="delete">x</div>
+                                   </div>`;
     transactionDiv.append(newTransactionElement);
 }
 
@@ -153,12 +171,18 @@ function displayFilteredTransactions(transactionObject) {
     const newTransactionElement = document.createElement('div');
     newTransactionElement.classList.add('transactionDiv');
     let amount = parseFloat(transactionObject.amount);
+    newTransactionElement.dataset.name = transactionObject.name;
+    newTransactionElement.dataset.date = transactionObject.date;
+    newTransactionElement.dataset.amount = amount;
+    newTransactionElement.dataset.category = transactionObject.category;
     newTransactionElement.innerHTML = `<div class="name&DateDiv">
                                         <div class="name">${transactionObject.name}</div>
                                         <div class="date">${transactionObject.date}</div>
                                    </div>
                                    <div class="category">${transactionObject.category}</div>
-                                   <div class="amount ${transactionObject.choice == 'expense' ? 'redText' : 'greenText'}">${transactionObject.choice == 'expense' ? `-$${amount.toFixed(2)}` : `+$${amount.toFixed(2)}`}</div>`;
+                                   <div class="amountAndDelete"><div class="amount ${transactionObject.choice == 'expense' ? 'redText' : 'greenText'}">${transactionObject.choice == 'expense' ? `-$${amount.toFixed(2)}` : `+$${amount.toFixed(2)}`}</div>
+                                   <div class="delete">x</div>
+                                   </div>`;
     transactionDiv.prepend(newTransactionElement);
 }
 
@@ -279,3 +303,51 @@ function cancelPopup() {
 } 
 
 // alert(`Width: ${window.innerWidth} \n height: ${window.innerHeight}`);
+function updateDeleteButtonsEventListeners() {
+    deleteButtons = Array.from(deleteButtonsHTMLCollection);
+    deleteButtons.forEach(button => {
+    button.removeEventListener("click", fetchTransactionDiv);
+    button.addEventListener("click", fetchTransactionDiv);
+})
+}
+updateDeleteButtonsEventListeners();
+console.log(deleteButtons);
+
+function fetchTransactionDiv(event, callback) {
+    let transactionElement = event.target.parentElement.parentElement;
+    let name = transactionElement.dataset.name;
+    let amount = transactionElement.dataset.amount;
+    let date = transactionElement.dataset.date;
+    let category = transactionElement.dataset.category;
+    transactions.forEach((transaction, index)=> {
+        if(transaction.name == name && transaction.amount == amount
+            && transaction.date == date && transaction.category == category
+        ) {
+            transactions.splice(index, 1);
+            transactionDiv.innerHTML = ``;
+            transactions.forEach(showAllTransactions);
+            updateDeleteButtonsEventListeners();
+            console.log(transactions);
+        }
+    })
+}
+
+function showdDeletePopup(event) {
+    popupDiv.style.transition = 'opacity 0.3s ease'
+    popupDiv.style.zIndex = '999';
+    popupDiv.style.opacity = '100%'
+    popupPurpose = 'delete';
+    cancelButton.removeEventListener("click", cancelPopup);
+    cancelButton.addEventListener("click", cancelPopup);
+
+    confirmButton.removeEventListener("click", hidePopup);
+    confirmButton.addEventListener("click", () => {
+        hidePopup().then(() => {
+            if(transactions.lenght < 1) {
+                transactionDiv.innerHTML = `<p class="defaultText">There are no transactions right now</p>`;
+            } else {
+                transactions.forEach(showAllTransactions);
+            }
+        })
+    });
+}
