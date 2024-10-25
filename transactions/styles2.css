@@ -133,6 +133,31 @@ h1 {
     color: rgba(255, 30, 30, 0.95);
 }
 
+.amountAndDelete {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.delete {
+    font-size: 2rem;
+    color: red;
+    height: 30px;
+    width: 30px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin-top: 10px;
+    will-change: transform;
+    transition: all 0.3s ease;
+}
+
+.delete:hover, .delete:active {
+    transform: scale(1.1);
+}
+
 #clearButton {
     height: 25px;
     width: 120px;
