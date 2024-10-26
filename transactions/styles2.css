@@ -43,6 +43,7 @@ h1 {
     width: 392px;
     min-height: 92vh;
     /* border: 1px solid black; */
+    overflow-y: scroll;
     padding: 15px;
     background-color: white;
     box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.1);
@@ -176,21 +177,22 @@ h1 {
 
 #popup {
     z-index: 999;
-    opacity: 0%;
-    position: fixed;
-    top: 250px;
-    left: 50%;
-    transform: translate(-50%, -50%); 
+    opacity: 0;
+    position: fixed; /* Fixed positioning */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust to truly center */
     width: 80%;
     height: 250px;
-    background-color: white;
-    padding: 10px 25px;
     background-color: rgb(243, 243, 243);
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    transition: opacity 0.3s ease; /* Smooth transition */
+    padding: 15px;
 }
+
 
 #backToMainPageDiv {
     width: 100%;

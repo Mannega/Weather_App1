@@ -30,6 +30,12 @@ try {
 } catch(error) {
     console.error(error);
     transactions = [];
+    localStorage.removeItem('income');
+    localStorage.removeItem('expense');
+    localStorage.removeItem('total');
+    localStorage.setItem('income', 0);
+    localStorage.setItem('expense', 0);
+    localStorage.setItem('total', 0);
 }
 if(transactions.length < 1) {
     transactionDiv.innerHTML = `<p class="defaultText">There are no transactions right now</p>`;
@@ -59,6 +65,7 @@ function sortByType(event) {
             incomeTransactions = [];
             expenseTransactions = [];
             transactions.forEach(showAllTransactions);
+            updateDeleteButtonsEventListeners();
             return;
         }
         currentFilterByType = 'All';
@@ -73,6 +80,7 @@ function sortByType(event) {
         } else {
             incomeTransactions.forEach(showIncomeTransactions);
             currentFilterByType = 'Income';
+            updateDeleteButtonsEventListeners();
             return;
         }
         currentFilterByType = 'Income';
@@ -87,6 +95,7 @@ function sortByType(event) {
         } else {
             expenseTransactions.forEach(showExpenseTransactions);
             currentFilterByType = 'Expenses';
+            updateDeleteButtonsEventListeners();
             return;
         }
       
@@ -97,6 +106,7 @@ function sortByType(event) {
     } else {
         newTransactions.forEach(displayFilteredTransactions);
     }
+    updateDeleteButtonsEventListeners();
 }
 
 // transactions.forEach(showAllTransactions)
@@ -238,8 +248,7 @@ function sortByCategory(event) {
     } else {
         transactionDiv.innerHTML = `<p class="defaultText">No transactions found for this category and transaction type</p>`;
     }
-    
-    
+    updateDeleteButtonsEventListeners();
 }
 filterByCategorySelect.removeEventListener("change", sortByCategory);
 filterByCategorySelect.addEventListener("change", sortByCategory);
@@ -273,7 +282,7 @@ clearButton.addEventListener("click", event => {
 })
 
 function hidePopup() {
-    if(popupPurpose == 'clear') {
+    if(popupPurpose == 'clear' || popupPurpose == 'delete') {
         popupDiv.style.opacity = '0%';
         return new Promise(resolve => {
             popupDiv.removeEventListener("transitionend",  hidePopupHandler)
@@ -314,22 +323,55 @@ updateDeleteButtonsEventListeners();
 console.log(deleteButtons);
 
 function fetchTransactionDiv(event, callback) {
+    popupPurpose = 'delete';
     let transactionElement = event.target.parentElement.parentElement;
     let name = transactionElement.dataset.name;
     let amount = transactionElement.dataset.amount;
     let date = transactionElement.dataset.date;
     let category = transactionElement.dataset.category;
-    transactions.forEach((transaction, index)=> {
-        if(transaction.name == name && transaction.amount == amount
-            && transaction.date == date && transaction.category == category
-        ) {
-            transactions.splice(index, 1);
-            transactionDiv.innerHTML = ``;
-            transactions.forEach(showAllTransactions);
-            updateDeleteButtonsEventListeners();
-            console.log(transactions);
-        }
-    })
+    showdDeletePopup();
+    confirmButton.removeEventListener("click", hidePopup);
+    confirmButton.addEventListener("click", () => {
+        hidePopup().then(() => {
+            if(transactions.lenght < 1) {
+                transactionDiv.innerHTML = `<p class="defaultText">There are no transactions right now</p>`;
+            } else {
+                transactions.forEach((transaction, index)=> {
+                    if(transaction.name == name && transaction.amount == amount
+                        && transaction.date == date && transaction.category == category
+                    ) {
+                        transactions.splice(index, 1);
+                        localStorage.setItem('transactions', JSON.stringify(transactions));
+                        transactionDiv.innerHTML = ``;
+                        incomeTransactions = [];
+                        expenseTransactions = [];
+                        transactions.forEach(showAllTransactions);
+                        transactionDiv.innerHTML = ``;
+                        let filteredTransactions = sortByCategoryHandler(currentFilterByCategory, currentFilterByType);
+                        filteredTransactions.forEach(displayFilteredTransactions);
+                        if(filteredTransactions.length < 1 && transactions.length > 0) {
+                            transactionDiv.innerHTML = `<p class="defaultText">There are no transactions right now</p>`;
+                        }
+                        else if(transactions.length < 1) {
+                            localStorage.removeItem('income');
+                            localStorage.removeItem('expense');
+                            localStorage.removeItem('total');
+                            localStorage.removeItem('transaction');
+                            
+                            localStorage.setItem('income', 0);
+                            localStorage.setItem('expense', 0);
+                            localStorage.setItem('total', 0);
+                        }
+                         else {
+                            console.log(filteredTransactions);
+                            updateDeleteButtonsEventListeners();
+                            console.log(transactions, incomeTransactions, filteredTransactions);
+                        }
+                    }
+                })
+            }
+        })
+    });
 }
 
 function showdDeletePopup(event) {
@@ -339,15 +381,4 @@ function showdDeletePopup(event) {
     popupPurpose = 'delete';
     cancelButton.removeEventListener("click", cancelPopup);
     cancelButton.addEventListener("click", cancelPopup);
-
-    confirmButton.removeEventListener("click", hidePopup);
-    confirmButton.addEventListener("click", () => {
-        hidePopup().then(() => {
-            if(transactions.lenght < 1) {
-                transactionDiv.innerHTML = `<p class="defaultText">There are no transactions right now</p>`;
-            } else {
-                transactions.forEach(showAllTransactions);
-            }
-        })
-    });
 }
