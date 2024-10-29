@@ -205,6 +205,7 @@ h1 {
     transition: 0.5s;
     padding: 15px;
     box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+    will-change: transform;
 }
 
 #popup.active {
