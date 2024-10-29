@@ -26,11 +26,6 @@ const addTransactionLegend = document.getElementById('addTransactionLegend');
 let income = parseFloat(localStorage.getItem('income')) || 0;
 let expense = parseFloat(localStorage.getItem('expense')) || 0;
 let total = parseFloat(localStorage.getItem('total')) || 0;
-// console.log(total, income, expense);
-expenseLabelNumber.textContent = `-$${expense.toFixed(2)}`;
-incomeLabelNumber.textContent = `+$${income.toFixed(2)}`;
-totalBalanceLabelNumber.textContent = `${total < 0 ? `-$${Math.abs(total).toFixed(2)}` : `$${total.toFixed(2)}`}`;
-
 let transactions;
 let storedTransactions = localStorage.getItem('transactions');
 if(storedTransactions && storedTransactions !== null) {
@@ -38,6 +33,19 @@ if(storedTransactions && storedTransactions !== null) {
 } else {
     transactions = [];
 }
+if(transactions.length < 1) {
+    localStorage.setItem('income', 0);
+    localStorage.setItem('expense', 0);
+    localStorage.setItem('total', 0);
+    income = 0;
+    expense = 0;
+    total = 0;
+}
+
+// console.log(total, income, expense);
+expenseLabelNumber.textContent = `-$${expense.toFixed(2)}`;
+incomeLabelNumber.textContent = `+$${income.toFixed(2)}`;
+totalBalanceLabelNumber.textContent = `${total < 0 ? `-$${Math.abs(total).toFixed(2)}` : `$${total.toFixed(2)}`}`;
 
 let transactionChoice = '';
 

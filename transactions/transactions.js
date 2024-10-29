@@ -1,13 +1,16 @@
-let transactionDiv = document.getElementById('transactionsDiv');
+const container = document.getElementById('container');
+const transactionDiv = document.getElementById('transactionsDiv');
 const filterByTypeSelect = document.getElementById('filterByTypeSelect');
 const filterByCategorySelect = document.getElementById('filterByCategorySelect');
 const clearButton = document.getElementById('clearButton');
 const backToMainPageButton = document.getElementById('backToMainPageButton');
 const deleteButtonsHTMLCollection = document.getElementsByClassName('delete');
+const headingDiv = document.getElementById('headingDiv');
 let deleteButtons;
 
 let popupPurpose = '';
 const popupDiv = document.getElementById('popup');
+const popupText = document.getElementById('popupText');
 const confirmButton = document.getElementById('confirmButton');
 const cancelButton = document.getElementById('cancelButton');
 
@@ -62,9 +65,13 @@ function sortByType(event) {
                 }
             });
         } else {
-            incomeTransactions = [];
-            expenseTransactions = [];
-            transactions.forEach(showAllTransactions);
+            if(transactions.length < 1) {
+                 transactionDiv.innerHTML = `<p class="defaultText">No transactions found for this category and transaction type</p>`
+            } else {
+                incomeTransactions = [];
+                expenseTransactions = [];
+                transactions.forEach(showAllTransactions);
+            }
             updateDeleteButtonsEventListeners();
             return;
         }
@@ -78,7 +85,11 @@ function sortByType(event) {
                     }
             });
         } else {
-            incomeTransactions.forEach(showIncomeTransactions);
+            if(incomeTransactions.length > 0) {
+                incomeTransactions.forEach(showIncomeTransactions);
+            } else {
+                 transactionDiv.innerHTML = `<p class="defaultText">No transactions found for this category and transaction type</p>`
+            }
             currentFilterByType = 'Income';
             updateDeleteButtonsEventListeners();
             return;
@@ -93,7 +104,11 @@ function sortByType(event) {
                 }
             });
         } else {
-            expenseTransactions.forEach(showExpenseTransactions);
+            if(expenseTransactions.length > 0) {
+                expenseTransactions.forEach(showExpenseTransactions);
+            } else {
+                transactionDiv.innerHTML = `<p class="defaultText">No transactions found for this category and transaction type</p>`
+            }
             currentFilterByType = 'Expenses';
             updateDeleteButtonsEventListeners();
             return;
@@ -261,62 +276,66 @@ function backToMainPage() {
 }
 
 clearButton.addEventListener("click", event => {
-    popupDiv.style.transition = 'opacity 0.3s ease'
-    popupDiv.style.zIndex = '999';
-    popupDiv.style.opacity = '100%'
+    popupText.textContent = `Are you sure you want to clear all transaction?`;
+    popupDiv.classList.toggle('active');
+    headingDiv.classList.toggle('active');
+    container.classList.toggle('active');
+
     popupPurpose = 'clear';
+
     cancelButton.removeEventListener("click", cancelPopup);
     cancelButton.addEventListener("click", cancelPopup);
 
-    confirmButton.removeEventListener("click", hidePopup);
-    confirmButton.addEventListener("click", () => {
-        hidePopup().then(() => {
-            transactionDiv.innerHTML = `<p class="defaultText">There are no transactions right now</p>`;
-            transactions = [];
-            localStorage.setItem('transactions', transactions);
-            localStorage.setItem('total', 0);
-            localStorage.setItem('income', 0);
-            localStorage.setItem('expense', 0);
-        })
-    });
+    confirmButton.removeEventListener("click", confirmHandle);
+    confirmButton.addEventListener("click", confirmHandle)
+   
 })
 
+function confirmHandle() {
+    hidePopup().then(() => {
+        transactionDiv.innerHTML = `<p class="defaultText">There are no transactions right now</p>`;
+        transactions = [];
+        localStorage.setItem('transactions', transactions);
+        localStorage.setItem('total', 0);
+        localStorage.setItem('income', 0);
+        localStorage.setItem('expense', 0);
+    })
+}
+
 function hidePopup() {
-    if(popupPurpose == 'clear' || popupPurpose == 'delete') {
-        popupDiv.style.opacity = '0%';
-        return new Promise(resolve => {
-            popupDiv.removeEventListener("transitionend",  hidePopupHandler)
-            popupDiv.addEventListener('transitionend', hidePopupHandler)
-            function hidePopupHandler(event) {
-                event.target.style.zIndex = '-999';
-                popupDiv.removeEventListener("transitionend",  hidePopupHandler)
-                popupDiv.style.zIndex = '-999';
-                resolve();
-            }
-        })
-    }
+    popupDiv.classList.toggle('active');
+    headingDiv.classList.toggle('active');
+    container.classList.toggle('active');
+    // let timeout = setTimeout(() => {
+    //     if(popupDiv.style.opacity !== '0') {
+    //         popupDiv.style.opacity = '0';
+    //     } else {
+    //         clearTimeout(timeout);
+    //     }
+    //     if(popupDiv.style.visibility !== 'hidden') {
+    //         popupDiv.style.visibility = 'hidden';
+    //     } else {
+    //         clearTimeout(timeout);
+    //     }
+    // }, 500);
+   
+    return new Promise(resolve => {
+       resolve();
+    })
 }
 
 function cancelPopup() {
-    popupDiv.style.opacity = '0%';
-    return new Promise(resolve => {
-        popupDiv.removeEventListener('transitionend', cancelPopupHandler);
-        popupDiv.addEventListener('transitionend', cancelPopupHandler)
-        function cancelPopupHandler(event) {
-            event.target.style.zIndex = '-999';
-            popupDiv.removeEventListener('transitionend', cancelPopupHandler);
-            popupDiv.style.zIndex = '-999';
-            resolve();
-        }
-    })
+    popupDiv.classList.toggle('active');
+    headingDiv.classList.toggle('active');
+    container.classList.toggle('active');
 } 
 
 // alert(`Width: ${window.innerWidth} \n height: ${window.innerHeight}`);
 function updateDeleteButtonsEventListeners() {
     deleteButtons = Array.from(deleteButtonsHTMLCollection);
     deleteButtons.forEach(button => {
-    button.removeEventListener("click", fetchTransactionDiv);
-    button.addEventListener("click", fetchTransactionDiv);
+        button.removeEventListener("click", fetchTransactionDiv);
+        button.addEventListener("click", fetchTransactionDiv);
 })
 }
 updateDeleteButtonsEventListeners();
@@ -349,7 +368,7 @@ function fetchTransactionDiv(event, callback) {
                         transactionDiv.innerHTML = ``;
                         let filteredTransactions = sortByCategoryHandler(currentFilterByCategory, currentFilterByType);
                         filteredTransactions.forEach(displayFilteredTransactions);
-                        if(filteredTransactions.length < 1 && transactions.length > 0) {
+                        if(filteredTransactions.length < 1 && transactions.length < 1) {
                             transactionDiv.innerHTML = `<p class="defaultText">There are no transactions right now</p>`;
                         }
                         else if(transactions.length < 1) {
@@ -372,13 +391,15 @@ function fetchTransactionDiv(event, callback) {
             }
         })
     });
+    updateDeleteButtonsEventListeners();
 }
 
-function showdDeletePopup(event) {
-    popupDiv.style.transition = 'opacity 0.3s ease'
-    popupDiv.style.zIndex = '999';
-    popupDiv.style.opacity = '100%'
-    popupPurpose = 'delete';
+function showdDeletePopup() {
+    popupDiv.classList.toggle('active');
+    headingDiv.classList.toggle('active');
+    container.classList.toggle('active');
+    popupText.textContent = `Are you sure you want to delete this transaction?`;
+    
     cancelButton.removeEventListener("click", cancelPopup);
     cancelButton.addEventListener("click", cancelPopup);
 }

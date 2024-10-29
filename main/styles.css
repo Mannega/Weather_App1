@@ -142,6 +142,7 @@ fieldset {
     justify-content: space-around;
     margin-bottom: 15px;
     border-radius: 3px;
+    user-select: none;
 }
 
 #inputExpenseChoiceButtons button {

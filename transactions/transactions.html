@@ -12,7 +12,9 @@
 
 </head>
 <body>
-    <h1 id="heading">My Transactions</h1>
+    <div id="headingDiv">
+        <h1 id="heading">My Transactions</h1>
+    </div>
     <div id="container">
             <div id="filtersDiv">
                 <label for="filterByTypeSelect">Filter By Type 
@@ -40,14 +42,14 @@
         <div id="transactionsDiv">
 
         </div>
+        </div>
         <div id="popup">
             <h1>Confirmation</h1>
-            <p>Are you sure you want to clear all transactions?</p>
+            <p id="popupText">Are you sure you want to clear all transactions?</p>
             <div id="poputButtonsDiv">
                 <button id="confirmButton" class="popupButton">Confirm</button>
                 <button id="cancelButton" class="popupButton">Cancel</button>
             </div>
-        </div>
     </div>
     
     <script src="transactions.js"></script>

@@ -32,10 +32,21 @@ h1 {
     font-weight: 500;
 }
 
+#headingDiv {
+    transition: 0.1;
+}
+
+#headingDiv.active, #container.active {
+    filter: blur(2px);
+    pointer-events: none;
+    user-select: none;
+}
+
 #container, header {
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: hidden;
 }
 
 
@@ -49,6 +60,7 @@ h1 {
     box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     perspective: 1000px;
+    transition: 0.1;
 }
 
 #filtersDiv {
@@ -153,6 +165,7 @@ h1 {
     margin-top: 10px;
     will-change: transform;
     transition: all 0.3s ease;
+    user-select: none;
 }
 
 .delete:hover, .delete:active {
@@ -176,12 +189,12 @@ h1 {
 }
 
 #popup {
-    z-index: 999;
+    visibility: hidden;
     opacity: 0;
-    position: fixed; /* Fixed positioning */
-    top: 50%; /* Center vertically */
-    left: 50%; /* Center horizontally */
-    transform: translate(-50%, -50%); /* Adjust to truly center */
+    position: fixed;
+    top: 40%;
+    left: 50%; 
+    transform: translate(-50%, -50%);
     width: 80%;
     height: 250px;
     background-color: rgb(243, 243, 243);
@@ -189,10 +202,17 @@ h1 {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    transition: opacity 0.3s ease; /* Smooth transition */
+    transition: 0.5s;
     padding: 15px;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
 }
 
+#popup.active {
+    top: 50%;
+    visibility: visible;
+    opacity: 100%;
+    transition: 0.5s;
+}
 
 #backToMainPageDiv {
     width: 100%;
@@ -233,12 +253,13 @@ h1 {
     margin-top: 20px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 20%;
 }
 
 .popupButton {
     width: 120px;
-    height: 30px;
+    height: 35px;
     border-radius: 5px;
     border: none;
     will-change: transform;
