@@ -132,7 +132,7 @@ function showAllTransactions(transactionObject) {
                                    </div>
                                    <div class="category">${transactionObject.category}</div>
                                    <div class="amountAndDelete"><div class="amount ${transactionObject.choice == 'expense' ? 'redText' : 'greenText'}">${transactionObject.choice == 'expense' ? `-$${amount.toFixed(2)}` : `+$${amount.toFixed(2)}`}</div>
-                                   <div class="delete">x</div>
+                                   <div class="delete"><img src="../Icons/deleteIcon.png"></div>
                                    </div>`;
     transactionDiv.prepend(newTransactionElement);
     if(transactionObject.choice == 'expense') {
@@ -160,7 +160,7 @@ function showIncomeTransactions(transactionObject) {
                                    </div>
                                    <div class="category">${transactionObject.category}</div>
                                    <div class="amountAndDelete"><div class="amount ${transactionObject.choice == 'expense' ? 'redText' : 'greenText'}">${transactionObject.choice == 'expense' ? `-$${amount.toFixed(2)}` : `+$${amount.toFixed(2)}`}</div>
-                                   <div class="delete">x</div>
+                                   <div class="delete"><img src="../Icons/deleteIcon.png"></div>
                                    </div>`;
     transactionDiv.append(newTransactionElement);
 }
@@ -180,7 +180,7 @@ function showExpenseTransactions(transactionObject) {
                                    </div>
                                    <div class="category">${transactionObject.category}</div>
                                    <<div class="amountAndDelete"><div class="amount ${transactionObject.choice == 'expense' ? 'redText' : 'greenText'}">${transactionObject.choice == 'expense' ? `-$${amount.toFixed(2)}` : `+$${amount.toFixed(2)}`}</div>
-                                   <div class="delete">x</div>
+                                   <div class="delete"><img src="../Icons/deleteIcon.png"></div>
                                    </div>`;
     transactionDiv.append(newTransactionElement);
 }
@@ -199,7 +199,7 @@ function displayFilteredTransactions(transactionObject) {
                                    </div>
                                    <div class="category">${transactionObject.category}</div>
                                    <div class="amountAndDelete"><div class="amount ${transactionObject.choice == 'expense' ? 'redText' : 'greenText'}">${transactionObject.choice == 'expense' ? `-$${amount.toFixed(2)}` : `+$${amount.toFixed(2)}`}</div>
-                                   <div class="delete">x</div>
+                                   <div class="delete"><img src="../Icons/deleteIcon.png"></div>
                                    </div>`;
     transactionDiv.prepend(newTransactionElement);
 }

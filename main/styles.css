@@ -200,6 +200,7 @@ fieldset {
     background-color: #3a3dbe;
     color: white;
     transition: transform 0.3s ease;
+    cursor: pointer;
 }
 
 #addExpenseButton:hover {

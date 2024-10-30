@@ -153,23 +153,29 @@ h1 {
 }
 
 .delete {
-    font-size: 2rem;
-    color: red;
-    height: 30px;
-    width: 30px;
-    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 50%;
     margin-top: 10px;
-    will-change: transform;
-    transition: all 0.3s ease;
     user-select: none;
+   
 }
 
-.delete:hover, .delete:active {
-    transform: scale(1.1);
+.delete img {
+    color: red;
+    height: 30px;
+    width: 25px;
+    filter: saturate(300%) hue-rotate(0deg);
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges; 
+    transition: all 0.3s ease;
+    will-change: transform, height, width;
+    cursor: pointer;
+}
+
+.delete img:hover, .delete img:active {
+    /* transform: scale(1.1); */
+    filter: saturate(150%) hue-rotate(0deg);
 }
 
 #clearButton {
@@ -182,6 +188,7 @@ h1 {
     background-color: rgb(255, 3, 3);
     transition: transform 0.3s ease;
     will-change: transform, opacity;
+    cursor: pointer;
 }
 
 #clearButton:hover {
@@ -234,6 +241,7 @@ h1 {
     border-radius: 5px;
     will-change: transform;
     margin-bottom: 30px;
+    cursor: pointer;
 }
 
 #backToMainPageButton:hover {
