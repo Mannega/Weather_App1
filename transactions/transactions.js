@@ -179,7 +179,7 @@ function showExpenseTransactions(transactionObject) {
                                         <div class="date">${transactionObject.date}</div>
                                    </div>
                                    <div class="category">${transactionObject.category}</div>
-                                   <<div class="amountAndDelete"><div class="amount ${transactionObject.choice == 'expense' ? 'redText' : 'greenText'}">${transactionObject.choice == 'expense' ? `-$${amount.toFixed(2)}` : `+$${amount.toFixed(2)}`}</div>
+                                   <div class="amountAndDelete"><div class="amount ${transactionObject.choice == 'expense' ? 'redText' : 'greenText'}">${transactionObject.choice == 'expense' ? `-$${amount.toFixed(2)}` : `+$${amount.toFixed(2)}`}</div>
                                    <div class="delete"><img src="../Icons/deleteIcon.png"></div>
                                    </div>`;
     transactionDiv.append(newTransactionElement);
