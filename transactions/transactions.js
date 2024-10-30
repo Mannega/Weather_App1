@@ -14,19 +14,12 @@ const popupText = document.getElementById('popupText');
 const confirmButton = document.getElementById('confirmButton');
 const cancelButton = document.getElementById('cancelButton');
 
-let categoryObject = {
-    foodTransactions: [],
-    utilitiesTransactions: [],
-    transportationTransactions: [],
-    rentTransactions: [],
-    entertainmentTransactions: [],
-    healthTransactions: [],
-    otherTransactions: []
-}
-
 let incomeTransactions = [];
 let expenseTransactions = [];
 let transactions;
+let income = parseFloat(localStorage.getItem('income')) || 0;
+let expense = parseFloat(localStorage.getItem('expense')) || 0;
+let total = parseFloat(localStorage.getItem('total')) || 0;
 try {
     let storedTransactions = localStorage.getItem('transactions');
     transactions = storedTransactions ? JSON.parse(storedTransactions) : [];
@@ -360,6 +353,17 @@ function fetchTransactionDiv(event, callback) {
                         && transaction.date == date && transaction.category == category
                     ) {
                         transactions.splice(index, 1);
+                        if(transaction.choice == 'expense') {
+                            expense -= transaction.amount;
+                            total = income - expense
+                            localStorage.setItem('expense', expense);
+                            localStorage.setItem('total', total);
+                        } else {
+                            income -= transaction.amount;
+                            total = income - expense;
+                            localStorage.setItem('income', income);
+                            localStorage.setItem('total', total);
+                        }
                         localStorage.setItem('transactions', JSON.stringify(transactions));
                         transactionDiv.innerHTML = ``;
                         incomeTransactions = [];
