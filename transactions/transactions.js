@@ -334,13 +334,14 @@ function updateDeleteButtonsEventListeners() {
 updateDeleteButtonsEventListeners();
 console.log(deleteButtons);
 
-function fetchTransactionDiv(event, callback) {
+function fetchTransactionDiv(event) {
     popupPurpose = 'delete';
-    let transactionElement = event.target.parentElement.parentElement;
+    let transactionElement = event.target.parentElement.parentElement.parentElement;
     let name = transactionElement.dataset.name;
     let amount = transactionElement.dataset.amount;
     let date = transactionElement.dataset.date;
     let category = transactionElement.dataset.category;
+    console.log(transactionElement);
     showdDeletePopup();
     confirmButton.removeEventListener("click", hidePopup);
     confirmButton.addEventListener("click", () => {
