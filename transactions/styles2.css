@@ -181,7 +181,7 @@ h1 {
     border-radius: 3px;
     background-color: rgb(255, 3, 3);
     transition: transform 0.3s ease;
-    will-change: transform;
+    will-change: transform, opacity;
 }
 
 #clearButton:hover {

@@ -51,3 +51,6 @@ package-lock.json
 # Miscellaneous
 .env*
 .git
+
+# Extra Personal Files
+.VSCodeCounter/
