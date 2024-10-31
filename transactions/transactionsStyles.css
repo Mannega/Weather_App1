@@ -173,9 +173,13 @@ h1 {
     cursor: pointer;
 }
 
-.delete img:hover, .delete img:active {
+.delete img:hover {
     /* transform: scale(1.1); */
     filter: saturate(150%) hue-rotate(0deg);
+}
+
+.delete img:active {
+    transform: scale(1.1);
 }
 
 #clearButton {
