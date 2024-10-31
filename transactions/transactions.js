@@ -296,9 +296,9 @@ function confirmHandle() {
 }
 
 function hidePopup() {
-    popupDiv.classList.toggle('active');
-    headingDiv.classList.toggle('active');
-    container.classList.toggle('active');
+    popupDiv.classList.remove('active');
+    headingDiv.classList.remove('active');
+    container.classList.remove('active');
     // let timeout = setTimeout(() => {
     //     if(popupDiv.style.opacity !== '0') {
     //         popupDiv.style.opacity = '0';
@@ -344,8 +344,9 @@ function fetchTransactionDiv(event) {
     console.log(transactionElement);
     showdDeletePopup();
     confirmButton.removeEventListener("click", hidePopup);
-    confirmButton.addEventListener("click", () => {
+    confirmButton.addEventListener("click", (event) => {
         hidePopup().then(() => {
+        console.log("Confirm button clicked!");
             if(transactions.lenght < 1) {
                 transactionDiv.innerHTML = `<p class="defaultText">There are no transactions right now</p>`;
             } else {
