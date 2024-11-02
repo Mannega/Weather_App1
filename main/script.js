@@ -184,7 +184,7 @@ function transactionSuccess() {
     }, 3500);
     function hideText() {
         text.style.opacity = '0%';
-        setTimeout(() => {Donation
+        setTimeout(() => {
             text.remove();
         }, 700);
     }
