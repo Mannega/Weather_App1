@@ -189,5 +189,68 @@ function transactionSuccess() {
         }, 700);
     }
 }
-
 // alert(`Width: ${window.innerWidth} \n height: ${window.innerHeight}`);
+
+
+// Theme Handling to ensure consistry alonge side with CSS
+
+const body = document.body;
+const heading = document.getElementById('heading');
+const headerTextElements = document.getElementsByClassName('headerText');
+const inputFields = document.getElementsByClassName('inputField');
+const inputAndExpenseChoiceButtons = document.getElementsByClassName('expenseIncomeChoice');
+
+function findPreferedTheme() {
+    let theme = ``;
+    if(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        theme = 'dark';
+        localStorage.setItem('theme', theme);
+    } else {
+        theme = 'light';
+        localStorage.setItem('theme', theme);
+    }
+    
+    return theme;
+};
+
+let inputAndExpenseChoiceButtonsObserver; // The expense and income choice buttons mutational observer
+
+const previousTheme = localStorage.getItem('theme') ||  findPreferedTheme();
+console.log(findPreferedTheme(), previousTheme);
+if(previousTheme === 'dark') {
+    document.getElementById('container').classList.add('dark');
+    heading.style.color = '#eee';
+    body.style.backgroundColor = `#171718`; 
+    Array.from(inputFields).forEach(inputField => {
+        inputField.style.color = 'white';
+    })
+    Array.from(inputAndExpenseChoiceButtons).forEach(button => {
+        if(!button.classList.contains('selected')) {
+            button.style.color = 'white';
+        } else {
+            button.style.color = 'black';
+        }
+    })
+    inputAndExpenseChoiceButtonsObserver = new MutationObserver(switchFontColor);
+    Array.from(inputAndExpenseChoiceButtons).forEach(button => {
+        inputAndExpenseChoiceButtonsObserver.observe(button, {attribute:  true, attributeFilter: ['class'], attributeOldValue: true});
+    })
+} else {
+    document.getElementById('container').classList.remove('dark');
+    heading.style.color = 'black';
+    body.style.backgroundColor = '#f6f8fa';
+    Array.from(inputFields).forEach(inputField => {
+        inputField.style.color = 'black';
+    })
+}
+
+function switchFontColor(entries) {
+    // console.log(entries);
+    entries.forEach(mutation => {
+        if(mutation.oldValue === 'expenseIncomeChoice selected') {
+            mutation.target.style.color = 'white';
+        } else {
+            mutation.target.style.color = 'black';
+        }
+    })
+}
