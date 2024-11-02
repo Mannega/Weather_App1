@@ -212,10 +212,9 @@ function findPreferedTheme() {
 }
 
 let inputAndExpenseChoiceButtonsObserver; // The expense and income choice buttons mutational observer
-
-const previousTheme = localStorage.getItem("theme") || findPreferedTheme();
-console.log(findPreferedTheme(), previousTheme);
-if (previousTheme === "dark") {
+const preferedTheme = localStorage.getItem("theme") || findPreferedTheme();
+console.log(findPreferedTheme(), preferedTheme);
+if (preferedTheme === "dark") {
 	document.getElementById("container").classList.add("dark");
 	heading.style.color = "#eee";
 	body.style.backgroundColor = `#171718`;

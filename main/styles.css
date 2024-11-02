@@ -305,6 +305,29 @@ select {
 	box-shadow: var(--selected-choice-buttons-box-shadow);
 }
 
+.themeButtons {
+	border: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#lightThemeButton {
+	background-color: #171718;
+}
+
+#lightThemeButton svg {
+	filter: brightness(1.7);
+}
+
+#darkThemeButton {
+	background-color: #f6f8fa;
+}
+
+#darkThemeButton svg {
+	filter: brightness(0.7);
+}
+
 @media screen and (min-height: 680px) {
 	h1 {
 		margin-top: -13px;
