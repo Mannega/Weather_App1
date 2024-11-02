@@ -1,90 +1,89 @@
 * {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-    font-family: "Poppins", "Roboto", Verdana, Tahoma, sans-serif;
-    --container-background-color: white;
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+	font-family: "Poppins", "Roboto", Verdana, Tahoma, sans-serif;
+	--container-background-color: white;
 }
 
 :root {
-    --text-color: black;
+	--text-color: black;
 
-    --body-background-color: #f6f8fa;
-    --heading-color: rgba(0, 0, 0, 0.95);
-    
-    --container-box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.1);
+	--body-background-color: #f6f8fa;
+	--heading-color: rgba(0, 0, 0, 0.95);
 
-    --header-background-color: #3a3dbe;
-    --header-text-color: white;
+	--container-box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.1);
 
-    --transaction-input-border: 1px solid rgba(0, 0, 0, 0.2);
-    --input-expense-choice-buttons-bg: #eee;
-    --selected-choice-buttons-box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.35);
-    --input-and-select-bg: #eee;
-    --input-color: black;
-    
-    
-    --add-transaction-button-bg: #3a3dbe;
-    --add-transaction-button-color: white;
+	--header-background-color: #3a3dbe;
+	--header-text-color: white;
+
+	--transaction-input-border: 1px solid rgba(0, 0, 0, 0.2);
+	--input-expense-choice-buttons-bg: #eee;
+	--selected-choice-buttons-box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.35);
+	--input-and-select-bg: #eee;
+	--input-color: black;
+
+	--add-transaction-button-bg: #3a3dbe;
+	--add-transaction-button-color: white;
 }
 
 html {
-    font-size: 62.5%;
+	font-size: 62.5%;
 }
 
 body {
-    min-height: 97vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 0px 5px;
+	min-height: 97vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0px 5px;
 }
 
-#container, header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+#container,
+header {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 #themeIconDiv {
-    margin-bottom: 4px;
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
+	margin-bottom: 4px;
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
 }
 
 #container {
-    width: 392px;
-    height: 150%;
-    padding: 15px;
-    background-color: var(--body-background-color);
-    box-shadow: var(--container-box-shadow);
-    border-radius: 10px;
-    perspective: 1000px;
-    color: var(--text-color);
+	width: 392px;
+	height: 150%;
+	padding: 15px;
+	background-color: var(--body-background-color);
+	box-shadow: var(--container-box-shadow);
+	border-radius: 10px;
+	perspective: 1000px;
+	color: var(--text-color);
 }
 
 #container.dark {
-    --text-color: white;
+	--text-color: white;
 
-    --body-background-color: #171718;
-    --heading-color: #ffffff;
-    
-    --container-box-shadow: 0px 0px 3px 1px rgba(255, 255, 255, 0.1);
+	--body-background-color: #171718;
+	--heading-color: #ffffff;
 
-    --header-background-color: #1e1e24;
-    --header-text-color: rgba(255, 255, 255, 0.95);
+	--container-box-shadow: 0px 0px 3px 1px rgba(255, 255, 255, 0.1);
 
-    --transaction-input-border: 1px solid rgba(226, 226, 226, 0.2);
-    --input-expense-choice-buttons-bg: rgb(31, 30, 30);
-    --selected-choice-buttons-box-shadow: 0px 0px 10px 5px rgba(146, 146, 146, 0.35);
-    --input-and-select-bg: #2e2e2e;
-    --input-color: rgb(231, 231, 231);
-    
-    
-    --add-transaction-button-bg: #3a3dbe;
-    --add-transaction-button-color: white;
+	--header-background-color: #1e1e24;
+	--header-text-color: rgba(255, 255, 255, 0.95);
+
+	--transaction-input-border: 1px solid rgba(226, 226, 226, 0.2);
+	--input-expense-choice-buttons-bg: rgb(31, 30, 30);
+	--selected-choice-buttons-box-shadow: 0px 0px 10px 5px rgba(146, 146, 146, 0.35);
+	--input-and-select-bg: #2e2e2e;
+	--input-color: rgb(231, 231, 231);
+
+	--add-transaction-button-bg: #3a3dbe;
+	--add-transaction-button-color: white;
 }
 
 /* #container.dark label {
@@ -92,304 +91,308 @@ body {
 } */
 
 #container.dark a {
-    color: rgb(155, 155, 155);
-    transition: color 0.3s;
+	color: rgb(155, 155, 155);
+	transition: color 0.3s;
 }
 
 #container.dark a:hover {
-    color: rgb(88, 86, 190);
+	color: rgb(88, 86, 190);
 }
 
 header {
-    width: 100%;
-    padding: 15px;
-    height: 165px;
-    padding-top: 0px;
-    margin-bottom: 10px;
-    background-color: var(--header-background-color);
-    color: white;
-    border-radius: 10px;
+	width: 100%;
+	padding: 15px;
+	height: 165px;
+	padding-top: 0px;
+	margin-bottom: 10px;
+	background-color: var(--header-background-color);
+	color: white;
+	border-radius: 10px;
 }
 
 h1 {
-    font-size: 2.8rem;
-    font-weight: 500;
-    margin-bottom: 5px;
-    margin-top: 5px;
+	font-size: 2.8rem;
+	font-weight: 500;
+	margin-bottom: 5px;
+	margin-top: 5px;
 }
 
-#totalBalance, #income, #expense {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+#totalBalance,
+#income,
+#expense {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 #incomeExpense {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-    gap: 30%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin-top: 10px;
+	gap: 30%;
 }
 
 .smallText {
-    font-size: 1.7rem;
-    font-weight: 500;
+	font-size: 1.7rem;
+	font-weight: 500;
 }
 
 .smallText:first-child {
-    margin-top: 3px;
+	margin-top: 3px;
 }
 
 .mediumText {
-    font-size: 2rem;
-    font-weight: 500;
+	font-size: 2rem;
+	font-weight: 500;
 }
 
 .bigText {
-    font-size: 3.7rem;
-    font-weight: 600;
+	font-size: 3.7rem;
+	font-weight: 600;
 }
 
 fieldset {
-    border: none;
-    height: auto;
+	border: none;
+	height: auto;
 }
 
 #transactions {
-    height: 20%;
-    width: 100%;
+	height: 20%;
+	width: 100%;
 }
 
 #transactions legend {
-    font-size: 2.1rem;
-    font-weight: 600;
+	font-size: 2.1rem;
+	font-weight: 600;
 }
 
 #transactions p {
-    font-size: 2rem;
-    margin-top: 10px;
+	font-size: 2rem;
+	margin-top: 10px;
 }
 
 #transactions a {
-    text-decoration: none;
+	text-decoration: none;
 }
 
 #addTransaction {
-    display: flex;
-    flex-direction: column;
-    margin-top: 30px;
+	display: flex;
+	flex-direction: column;
+	margin-top: 30px;
 }
 
 #addTransaction legend {
-    font-size: 2.1rem;
-    font-weight: 600;
-    margin-bottom: 20px;
+	font-size: 2.1rem;
+	font-weight: 600;
+	margin-bottom: 20px;
 }
 
 .transactionSuccess {
-    font-size: 1.7rem;
-    color: green;
+	font-size: 1.7rem;
+	color: green;
 }
 
 #addTransaction input {
-    margin: 10px;
-    height: 25px;
-    padding: 5px;
-    border: var(--transaction-input-border);
-    border-radius: 3px;
+	margin: 10px;
+	height: 25px;
+	padding: 5px;
+	border: var(--transaction-input-border);
+	border-radius: 3px;
 }
 
 #addTransaction label {
-    font-size: 1.5rem;
-    font-weight: 500;
+	font-size: 1.5rem;
+	font-weight: 500;
 }
 
 #inputExpenseChoiceButtons {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 15px;
-    border-radius: 3px;
-    user-select: none;
+	display: flex;
+	justify-content: space-around;
+	margin-bottom: 15px;
+	border-radius: 3px;
+	user-select: none;
 }
 
 #inputExpenseChoiceButtons button {
-    background-color: var(--input-expense-choice-buttons-bg);
-    padding: 3px;
-    width: 40%;
-    height: 10%;
-    border: none;
-    border-radius: 5px;
-    font-weight: 500;
-    cursor: pointer;
+	background-color: var(--input-expense-choice-buttons-bg);
+	padding: 3px;
+	width: 40%;
+	height: 10%;
+	border: none;
+	border-radius: 5px;
+	font-weight: 500;
+	cursor: pointer;
 }
 
 #nameFieldCatSelectDiv {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
+	display: flex;
+	flex-direction: row;
+	gap: 20px;
 }
 
 #nameFieldCatSelectDiv input {
-    width: 150px;
-    height: 32px;
-    color: var(--input-color);
+	width: 150px;
+	height: 32px;
+	color: var(--input-color);
 }
 
-#nameFieldCatSelectDiv select{
-    margin-top: 10px;
-    height: 31px;
-    border: var(--transaction-input-border);
+#nameFieldCatSelectDiv select {
+	margin-top: 10px;
+	height: 31px;
+	border: var(--transaction-input-border);
 }
 
 #amountDateDiv {
-    display: flex;
-    justify-content: flex-start;
-    gap: 25px;
-    margin-top: 10px;
+	display: flex;
+	justify-content: flex-start;
+	gap: 25px;
+	margin-top: 10px;
 }
 
 #amountDateDiv label {
-    display: flex;  
-    flex-direction: column;
-    align-items: flex-start;
-    width: 45%;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	width: 45%;
 }
 
 #amountDateDiv input {
-    width: 150px;
-    height: 32px;
+	width: 150px;
+	height: 32px;
 }
 
 #amountDateDiv input:last-child {
-    width: 140px;
-    font-size: 1.5rem;
+	width: 140px;
+	font-size: 1.5rem;
 }
 
 #addExpenseButton {
-    width: 100%;
-    height: 33px;
-    margin-top: 20px;
-    border: none;
-    border-radius: 3px;
-    background-color: var(--add-transaction-button-bg);
-    color: var(--add-transaction-button-color);
-    transition: transform 0.3s ease;
-    cursor: pointer;
+	width: 100%;
+	height: 33px;
+	margin-top: 20px;
+	border: none;
+	border-radius: 3px;
+	background-color: var(--add-transaction-button-bg);
+	color: var(--add-transaction-button-color);
+	transition: transform 0.3s ease;
+	cursor: pointer;
 }
 
 #addExpenseButton:hover {
-    transform: scale(1.02);
+	transform: scale(1.02);
 }
 
-input, select {
-    border: 1px solid var(--text-color);
-    background-color: var(--input-and-select-bg);
-    font-size: 1.6rem;
-    cursor: pointer;
+input,
+select {
+	border: 1px solid var(--text-color);
+	background-color: var(--input-and-select-bg);
+	font-size: 1.6rem;
+	cursor: pointer;
 }
 
-input:focus, select:focus {
-    outline: 1px solid rgb(88, 194, 226) !important;
+input:focus,
+select:focus {
+	outline: 1px solid rgb(88, 194, 226) !important;
 }
 
 select {
-    border-radius: 3px;
+	border-radius: 3px;
 }
 
 .selected {
-    background-color: rgb(202, 201, 201) !important;
-    box-shadow: var(--selected-choice-buttons-box-shadow);
+	background-color: rgb(202, 201, 201) !important;
+	box-shadow: var(--selected-choice-buttons-box-shadow);
 }
 
 @media screen and (min-height: 680px) {
-    h1 {
-        margin-top: -13px;
-        margin-bottom: 30px;
-    }
-    
-    #incomeExpense {
-        margin-top: 25px;
-    }
+	h1 {
+		margin-top: -13px;
+		margin-bottom: 30px;
+	}
 
-    header {
-        margin-bottom: 35px;
-        height: 175;
-    }
+	#incomeExpense {
+		margin-top: 25px;
+	}
 
-    #addTransaction {
-        margin-top: 20px;
-    }
+	header {
+		margin-bottom: 35px;
+		height: 175;
+	}
 
-    #transactionFilterDiv p {
-        margin-top: 13px;
-        margin-bottom: 15px;
-    }
+	#addTransaction {
+		margin-top: 20px;
+	}
 
-    #inputExpenseChoiceButtons {
-        margin-top: 10px;
-    }
+	#transactionFilterDiv p {
+		margin-top: 13px;
+		margin-bottom: 15px;
+	}
 
-    #addExpenseButton {
-        height: 40px;
-    }
+	#inputExpenseChoiceButtons {
+		margin-top: 10px;
+	}
 
-    h1 {
-        margin-top: -30px;
-    }
+	#addExpenseButton {
+		height: 40px;
+	}
+
+	h1 {
+		margin-top: -30px;
+	}
 }
 
 @media screen and (min-height: 720) {
-    h1 {
-        margin-bottom: 40px;
-        margin-top: -20px;
-    }
+	h1 {
+		margin-bottom: 40px;
+		margin-top: -20px;
+	}
 
-    #incomeExpense {
-        margin-top: 35px;
-    }
+	#incomeExpense {
+		margin-top: 35px;
+	}
 
-    header {
-        margin-bottom: 45px;
-        height: 200px;
-    }
+	header {
+		margin-bottom: 45px;
+		height: 200px;
+	}
 
-    #addTransaction {
-        margin-top: 30px;
-    }
+	#addTransaction {
+		margin-top: 30px;
+	}
 
-    #transactionFilterDiv p {
-        margin-top: 20px;
-        margin-bottom: 20px;
-    }
+	#transactionFilterDiv p {
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
 
-    #inputExpenseChoiceButtons {
-        margin-top: 20px;
-    }
+	#inputExpenseChoiceButtons {
+		margin-top: 20px;
+	}
 
-    #addExpenseButton {
-        height: 45px;
-    }
+	#addExpenseButton {
+		height: 45px;
+	}
 
-    h1 {
-        margin-top: -40px;
-    }
+	h1 {
+		margin-top: -40px;
+	}
 }
 
 @media (max-width: 385px) {
-    body {
-        transform: scale(0.9);
-    }
+	body {
+		transform: scale(0.9);
+	}
 }
 
 @media (max-width: 380px) {
-    body {
-        transform: scale(0.85);
-    }
+	body {
+		transform: scale(0.85);
+	}
 }
 
 @media (max-width: 375px) {
-    body {
-        transform: scale(0.80);
-    }
+	body {
+		transform: scale(0.8);
+	}
 }
