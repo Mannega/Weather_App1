@@ -198,47 +198,102 @@ const headerTextElements = document.getElementsByClassName("headerText");
 const inputFields = document.getElementsByClassName("inputField");
 const inputAndExpenseChoiceButtons = document.getElementsByClassName("expenseIncomeChoice");
 
-function findPreferedTheme() {
-	let theme = ``;
-	if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+let theme = ``;
+let themeAdjusted = false;
+const preferedTheme = localStorage.getItem("theme") || findPreferedTheme();
+
+let darkThemeButton = document.getElementById("darkThemeButton");
+let lightThemeButton = document.getElementById("lightThemeButton");
+let themeButtons = document.getElementsByClassName("themeButtons");
+
+function setThemeButtonsEventListeners() {
+	Array.from(themeButtons).forEach((button) => {
+		button.removeEventListener("click", setTheme);
+		button.addEventListener("click", setTheme);
+	});
+}
+setThemeButtonsEventListeners();
+
+function setTheme(event) {
+	// console.log(event);
+	// console.log(event.target.id);
+	if (event.target.id === "lightThemeButton" || event.target.id === "lightThemeSvg") {
+		lightThemeButton.style.display = "none";
+		darkThemeButton.style.display = "block";
+
+		localStorage.setItem("themeAdjusted", true);
+		theme = "light";
+		localStorage.setItem("theme", theme);
+	} else if (event.target.id === "darkThemeButton" || event.target.id === "darkThemeSvg") {
+		darkThemeButton.style.display = "none";
+		lightThemeButton.style.display = "block";
+
+		localStorage.setItem("themeAdjusted", true);
 		theme = "dark";
 		localStorage.setItem("theme", theme);
 	} else {
-		theme = "light";
-		localStorage.setItem("theme", theme);
+		alert("An unknown error has occured, please try again");
+		return;
+	}
+
+	setThemeButtonsEventListeners();
+	switchTheme();
+	location.reload();
+	// console.log(event);
+}
+
+function findPreferedTheme() {
+	if (localStorage.getItem("themeAdjusted") == false) {
+		if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+			theme = "dark";
+			localStorage.setItem("theme", theme);
+		} else {
+			theme = "light";
+			localStorage.setItem("theme", theme);
+		}
+	} else if (localStorage.getItem("themeAdjusted") == true) {
+		theme = localStorage.getItem("theme");
 	}
 
 	return theme;
 }
 
 let inputAndExpenseChoiceButtonsObserver; // The expense and income choice buttons mutational observer
-const preferedTheme = localStorage.getItem("theme") || findPreferedTheme();
 console.log(findPreferedTheme(), preferedTheme);
-if (preferedTheme === "dark") {
-	document.getElementById("container").classList.add("dark");
-	heading.style.color = "#eee";
-	body.style.backgroundColor = `#171718`;
-	Array.from(inputFields).forEach((inputField) => {
-		inputField.style.color = "white";
-	});
-	Array.from(inputAndExpenseChoiceButtons).forEach((button) => {
-		if (!button.classList.contains("selected")) {
-			button.style.color = "white";
-		} else {
-			button.style.color = "black";
-		}
-	});
-	inputAndExpenseChoiceButtonsObserver = new MutationObserver(switchFontColor);
-	Array.from(inputAndExpenseChoiceButtons).forEach((button) => {
-		inputAndExpenseChoiceButtonsObserver.observe(button, { attribute: true, attributeFilter: ["class"], attributeOldValue: true });
-	});
-} else {
-	document.getElementById("container").classList.remove("dark");
-	heading.style.color = "black";
-	body.style.backgroundColor = "#f6f8fa";
-	Array.from(inputFields).forEach((inputField) => {
-		inputField.style.color = "black";
-	});
+switchTheme();
+function switchTheme() {
+	if (preferedTheme === "dark") {
+		document.getElementById("container").classList.add("dark");
+		heading.style.color = "#eee";
+		body.style.backgroundColor = `#171718`;
+		Array.from(inputFields).forEach((inputField) => {
+			inputField.style.color = "white";
+		});
+		Array.from(inputAndExpenseChoiceButtons).forEach((button) => {
+			if (!button.classList.contains("selected")) {
+				button.style.color = "white";
+			} else {
+				button.style.color = "black";
+			}
+			darkThemeButton.style.display = "none";
+			lightThemeButton.style.display = "block";
+		});
+		inputAndExpenseChoiceButtonsObserver = new MutationObserver(switchFontColor);
+		Array.from(inputAndExpenseChoiceButtons).forEach((button) => {
+			inputAndExpenseChoiceButtonsObserver.observe(button, { attribute: true, attributeFilter: ["class"], attributeOldValue: true });
+		});
+	} else {
+		document.getElementById("container").classList.remove("dark");
+		heading.style.color = "black";
+		body.style.backgroundColor = "#f6f8fa";
+		Array.from(inputFields).forEach((inputField) => {
+			inputField.style.color = "black";
+		});
+		darkThemeButton.style.display = "block";
+		lightThemeButton.style.display = "none";
+	}
+
+	setThemeButtonsEventListeners();
 }
 
 function switchFontColor(entries) {
