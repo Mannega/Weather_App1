@@ -215,6 +215,8 @@ function setThemeButtonsEventListeners() {
 setThemeButtonsEventListeners();
 
 function setTheme(event) {
+	// Handle theme button press.
+
 	// console.log(event);
 	// console.log(event.target.id);
 	if (event.target.id === "lightThemeButton" || event.target.id === "lightThemeSvg") {
@@ -232,8 +234,16 @@ function setTheme(event) {
 		theme = "dark";
 		localStorage.setItem("theme", theme);
 	} else {
-		alert("An unknown error has occured, please try again");
-		return;
+		// Fallback when the theme button isn't reconized for any possible reason.
+		if (localStorage.getItem("theme") === "dark") {
+			theme = "light";
+			localStorage.setItem("theme", theme);
+			localStorage.setItem("themeAdjusted", true);
+		} else {
+			theme = "dark";
+			localStorage.setItem("theme", theme);
+			localStorage.setItem("themeAdjusted", true);
+		}
 	}
 
 	setThemeButtonsEventListeners();
@@ -278,6 +288,7 @@ function switchTheme() {
 			darkThemeButton.style.display = "none";
 			lightThemeButton.style.display = "block";
 		});
+		// Add the mutation observers for the expense and income choice buttons.
 		inputAndExpenseChoiceButtonsObserver = new MutationObserver(switchFontColor);
 		Array.from(inputAndExpenseChoiceButtons).forEach((button) => {
 			inputAndExpenseChoiceButtonsObserver.observe(button, { attribute: true, attributeFilter: ["class"], attributeOldValue: true });
@@ -297,6 +308,8 @@ function switchTheme() {
 }
 
 function switchFontColor(entries) {
+	// Handle the expense and income choice buttons font colour switch while on dark theme.
+
 	// console.log(entries);
 	entries.forEach((mutation) => {
 		if (mutation.oldValue === "expenseIncomeChoice selected") {
