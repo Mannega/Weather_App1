@@ -126,11 +126,14 @@ function showAllTransactions(transactionObject) {
 	newTransactionElement.dataset.date = transactionObject.date;
 	newTransactionElement.dataset.amount = transactionObject.amount;
 	newTransactionElement.dataset.category = transactionObject.category;
+
+	newTransactionElement.style.boxShadow = `${preferedTheme === "dark" ? "1px 1px 10px rgba(255, 255, 255, 0.2)" : "1px 1px 10px rgba(0, 0, 0, 0.5"}`;
+	newTransactionElement.style.backgroundColor = `${preferedTheme === "dark" ? "#20202020" : "rgba(214, 207, 207, 0.7)"}`;
 	newTransactionElement.innerHTML = `<div class="name&DateDiv">
-                                        <div class="name">${transactionObject.name}</div>
-                                        <div class="date">${transactionObject.date}</div>
+                                        <div class="name" style="color: ${preferedTheme === "dark" ? "rgb(230, 230, 230)" : "black"}">${transactionObject.name}</div>
+                                        <div class="date" style="color: ${preferedTheme === "dark" ? "rgba(230, 230, 230, 0.8)" : "rgb(0, 0, 0, 0.8)"}">${transactionObject.date}</div>
                                    </div>
-                                   <div class="category">${transactionObject.category}</div>
+                                   <div class="category" style="color: ${preferedTheme === "dark" ? "rgba(230, 230, 230, 0.8)" : "rgb(0, 0, 0, 0.8)"}">${transactionObject.category}</div>
                                    <div class="amountAndDelete"><div class="amount ${transactionObject.choice == "expense" ? "redText" : "greenText"}">${transactionObject.choice == "expense" ? `-$${amount.toFixed(2)}` : `+$${amount.toFixed(2)}`}</div>
                                    <div class="delete"><img src="../Icons/deleteIcon.png"></div>
                                    </div>`;
@@ -154,11 +157,14 @@ function showIncomeTransactions(transactionObject) {
 	newTransactionElement.dataset.date = transactionObject.date;
 	newTransactionElement.dataset.amount = amount;
 	newTransactionElement.dataset.category = transactionObject.category;
+
+	newTransactionElement.style.boxShadow = `${preferedTheme === "dark" ? "1px 1px 10px rgba(255, 255, 255, 0.2)" : "1px 1px 10px rgba(0, 0, 0, 0.5"}`;
+	newTransactionElement.style.backgroundColor = `${preferedTheme === "dark" ? "#20202020" : "rgba(214, 207, 207, 0.7)"}`;
 	newTransactionElement.innerHTML = `<div class="name&DateDiv">
-                                        <div class="name">${transactionObject.name}</div>
-                                        <div class="date">${transactionObject.date}</div>
+                                        <div class="name" style="color: ${preferedTheme === "dark" ? "rgb(230, 230, 230)" : "black"}">${transactionObject.name}</div>
+                                        <div class="date" style="color: ${preferedTheme === "dark" ? "rgba(230, 230, 230, 0.8)" : "rgb(0, 0, 0, 0.8)"}">${transactionObject.date}</div>
                                    </div>
-                                   <div class="category">${transactionObject.category}</div>
+                                   <div class="category" style="color: ${preferedTheme === "dark" ? "rgba(230, 230, 230, 0.8)" : "rgb(0, 0, 0, 0.8)"}">${transactionObject.category}</div>
                                    <div class="amountAndDelete"><div class="amount ${transactionObject.choice == "expense" ? "redText" : "greenText"}">${transactionObject.choice == "expense" ? `-$${amount.toFixed(2)}` : `+$${amount.toFixed(2)}`}</div>
                                    <div class="delete"><img src="../Icons/deleteIcon.png"></div>
                                    </div>`;
@@ -174,11 +180,14 @@ function showExpenseTransactions(transactionObject) {
 	newTransactionElement.dataset.date = transactionObject.date;
 	newTransactionElement.dataset.amount = amount;
 	newTransactionElement.dataset.category = transactionObject.category;
+
+	newTransactionElement.style.boxShadow = `${preferedTheme === "dark" ? "1px 1px 10px rgba(255, 255, 255, 0.2)" : "1px 1px 10px rgba(0, 0, 0, 0.5"}`;
+	newTransactionElement.style.backgroundColor = `${preferedTheme === "dark" ? "#20202020" : "rgba(214, 207, 207, 0.7)"}`;
 	newTransactionElement.innerHTML = `<div class="name&DateDiv">
-                                        <div class="name">${transactionObject.name}</div>
-                                        <div class="date">${transactionObject.date}</div>
+                                        <div class="name" style="color: ${preferedTheme === "dark" ? "rgb(230, 230, 230)" : "black"}">${transactionObject.name}</div>
+                                        <div class="date" style="color: ${preferedTheme === "dark" ? "rgba(230, 230, 230, 0.8)" : "rgb(0, 0, 0, 0.8)"}">${transactionObject.date}</div>
                                    </div>
-                                   <div class="category">${transactionObject.category}</div>
+                                   <div class="category" style="color: ${preferedTheme === "dark" ? "rgba(230, 230, 230, 0.8)" : "rgb(0, 0, 0, 0.8)"}">${transactionObject.category}</div>
                                    <div class="amountAndDelete"><div class="amount ${transactionObject.choice == "expense" ? "redText" : "greenText"}">${transactionObject.choice == "expense" ? `-$${amount.toFixed(2)}` : `+$${amount.toFixed(2)}`}</div>
                                    <div class="delete"><img src="../Icons/deleteIcon.png"></div>
                                    </div>`;
@@ -193,11 +202,14 @@ function displayFilteredTransactions(transactionObject) {
 	newTransactionElement.dataset.date = transactionObject.date;
 	newTransactionElement.dataset.amount = amount;
 	newTransactionElement.dataset.category = transactionObject.category;
+
+	newTransactionElement.style.boxShadow = `${preferedTheme === "dark" ? "1px 1px 10px rgba(255, 255, 255, 0.2)" : "1px 1px 10px rgba(0, 0, 0, 0.5"}`;
+	newTransactionElement.style.backgroundColor = `${preferedTheme === "dark" ? "#20202020" : "rgba(214, 207, 207, 0.7)"}`;
 	newTransactionElement.innerHTML = `<div class="name&DateDiv">
-                                        <div class="name">${transactionObject.name}</div>
-                                        <div class="date">${transactionObject.date}</div>
+                                        <div class="name" style="color: ${preferedTheme === "dark" ? "rgb(230, 230, 230)" : "black"}">${transactionObject.name}</div>
+                                        <div class="date" style="color: ${preferedTheme === "dark" ? "rgba(230, 230, 230, 0.8)" : "rgb(0, 0, 0, 0.8)"}">${transactionObject.date}</div>
                                    </div>
-                                   <div class="category">${transactionObject.category}</div>
+                                   <div class="category" style="color: ${preferedTheme === "dark" ? "rgba(230, 230, 230, 0.8)" : "rgb(0, 0, 0, 0.8)"}">${transactionObject.category}</div>
                                    <div class="amountAndDelete"><div class="amount ${transactionObject.choice == "expense" ? "redText" : "greenText"}">${transactionObject.choice == "expense" ? `-$${amount.toFixed(2)}` : `+$${amount.toFixed(2)}`}</div>
                                    <div class="delete"><img src="../Icons/deleteIcon.png"></div>
                                    </div>`;
