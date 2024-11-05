@@ -8,6 +8,8 @@ const deleteButtonsHTMLCollection = document.getElementsByClassName("delete");
 const headingDiv = document.getElementById("headingDiv");
 let deleteButtons;
 
+const preferedTheme = localStorage.getItem("theme");
+
 let popupPurpose = "";
 const popupDiv = document.getElementById("popup");
 const popupText = document.getElementById("popupText");
@@ -34,7 +36,7 @@ try {
 	localStorage.setItem("total", 0);
 }
 if (transactions.length < 1) {
-	transactionDiv.innerHTML = `<p class="defaultText">There are no transactions right now</p>`;
+	transactionDiv.innerHTML = `<p class="defaultText" style="color: ${preferedTheme === "dark" ? "white" : "black"}">There are no transactions right now</p>`;
 } else {
 	filterByTypeSelect.value = "All";
 	transactions.forEach(showAllTransactions);
@@ -59,7 +61,7 @@ function sortByType(event) {
 			});
 		} else {
 			if (transactions.length < 1) {
-				transactionDiv.innerHTML = `<p class="defaultText">No transactions found for this category and transaction type</p>`;
+				transactionDiv.innerHTML = `<p class="defaultText" style="color: ${preferedTheme === "dark" ? "white" : "black"}">No transactions found for this category and transaction type</p>`;
 			} else {
 				incomeTransactions = [];
 				expenseTransactions = [];
@@ -80,7 +82,7 @@ function sortByType(event) {
 			if (incomeTransactions.length > 0) {
 				incomeTransactions.forEach(showIncomeTransactions);
 			} else {
-				transactionDiv.innerHTML = `<p class="defaultText">No transactions found for this category and transaction type</p>`;
+				transactionDiv.innerHTML = `<p class="defaultText" style="color: ${preferedTheme === "dark" ? "white" : "black"}">No transactions found for this category and transaction type</p>`;
 			}
 			currentFilterByType = "Income";
 			updateDeleteButtonsEventListeners();
@@ -98,7 +100,7 @@ function sortByType(event) {
 			if (expenseTransactions.length > 0) {
 				expenseTransactions.forEach(showExpenseTransactions);
 			} else {
-				transactionDiv.innerHTML = `<p class="defaultText">No transactions found for this category and transaction type</p>`;
+				transactionDiv.innerHTML = `<p class="defaultText" style="color: ${preferedTheme === "dark" ? "white" : "black"}">No transactions found for this category and transaction type</p>`;
 			}
 			currentFilterByType = "Expenses";
 			updateDeleteButtonsEventListeners();
@@ -108,7 +110,7 @@ function sortByType(event) {
 		currentFilterByType = "Expenses";
 	}
 	if (newTransactions.length < 1) {
-		transactionDiv.innerHTML = `<p class="defaultText">No transactions found for this category and transaction type</p>`;
+		transactionDiv.innerHTML = `<p class="defaultText" style="color: ${preferedTheme === "dark" ? "white" : "black"}">No transactions found for this category and transaction type</p>`;
 	} else {
 		newTransactions.forEach(displayFilteredTransactions);
 	}
@@ -252,7 +254,7 @@ function sortByCategory(event) {
 	if (filteredTransactions.length > 0) {
 		filteredTransactions.forEach(displayFilteredTransactions);
 	} else {
-		transactionDiv.innerHTML = `<p class="defaultText">No transactions found for this category and transaction type</p>`;
+		transactionDiv.innerHTML = `<p class="defaultText" style="color: ${preferedTheme === "dark" ? "white" : "black"}">No transactions found for this category and transaction type</p>`;
 	}
 	updateDeleteButtonsEventListeners();
 }
@@ -282,7 +284,7 @@ clearButton.addEventListener("click", (event) => {
 
 function confirmHandle() {
 	hidePopup().then(() => {
-		transactionDiv.innerHTML = `<p class="defaultText">There are no transactions right now</p>`;
+		transactionDiv.innerHTML = `<p class="defaultText" style="color: ${preferedTheme === "dark" ? "white" : "black"}">There are no transactions right now</p>`;
 		transactions = [];
 		localStorage.setItem("transactions", transactions);
 		localStorage.setItem("total", 0);
@@ -344,7 +346,7 @@ function fetchTransactionDiv(event) {
 		hidePopup().then(() => {
 			console.log("Confirm button clicked!");
 			if (transactions.lenght < 1) {
-				transactionDiv.innerHTML = `<p class="defaultText">There are no transactions right now</p>`;
+				transactionDiv.innerHTML = `<p class="defaultText" style="color: ${preferedTheme === "dark" ? "white" : "black"}">There are no transactions right now</p>`;
 			} else {
 				transactions.forEach((transaction, index) => {
 					if (transaction.name == name && transaction.amount == amount && transaction.date == date && transaction.category == category) {
@@ -369,7 +371,7 @@ function fetchTransactionDiv(event) {
 						let filteredTransactions = sortByCategoryHandler(currentFilterByCategory, currentFilterByType);
 						filteredTransactions.forEach(displayFilteredTransactions);
 						if (filteredTransactions.length < 1 && transactions.length < 1) {
-							transactionDiv.innerHTML = `<p class="defaultText">There are no transactions right now</p>`;
+							transactionDiv.innerHTML = `<p class="defaultText" style="color: ${preferedTheme === "dark" ? "white" : "black"}">There are no transactions right now</p>`;
 						} else if (transactions.length < 1) {
 							localStorage.removeItem("income");
 							localStorage.removeItem("expense");
@@ -401,3 +403,40 @@ function showdDeletePopup() {
 	cancelButton.removeEventListener("click", cancelPopup);
 	cancelButton.addEventListener("click", cancelPopup);
 }
+
+//  Theme switch handling
+
+const body = document.body;
+const filterLabels = document.getElementsByClassName("filterLabel");
+const filterSelects = document.getElementsByClassName("filterSelect");
+
+function switchTheme() {
+	if (preferedTheme === "dark") {
+		container.style.backgroundColor = "#171718";
+		container.style.boxShadow = "0px 0px 3px 1px rgba(255, 255, 255, 0.1)";
+		body.style.backgroundColor = "#171718";
+		heading.style.color = "white";
+
+		Array.from(filterLabels).forEach((label) => {
+			label.style.color = "rgb(230, 230, 230)";
+		});
+		Array.from(filterSelects).forEach((select) => {
+			select.style.backgroundColor = "#2e2e2e";
+			select.style.color = "white";
+		});
+	} else {
+		container.style.backgroundColor = "white";
+		container.style.boxShadow = "0px 0px 3px 1px rgba(0, 0, 0, 0.1)";
+		body.style.backgroundColor = "white";
+		heading.style.color = "rgba(0, 0, 0, 0.95)";
+
+		Array.from(filterLabels).forEach((label) => {
+			label.style.color = "black";
+		});
+		Array.from(filterSelects).forEach((select) => {
+			select.style.backgroundColor = "white";
+			select.style.color = "black";
+		});
+	}
+}
+switchTheme();

@@ -310,6 +310,12 @@ select {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	will-change: transform;
+	transition: transform 0.3s ease;
+}
+
+.themeButtons:hover {
+	transform: scale(1.1);
 }
 
 #lightThemeButton {
@@ -320,12 +326,20 @@ select {
 	filter: brightness(1.7);
 }
 
+#lightThemeButton svg:hover {
+	filter: brightness(2.5);
+}
+
 #darkThemeButton {
 	background-color: #f6f8fa;
 }
 
 #darkThemeButton svg {
 	filter: brightness(0.7);
+}
+
+#darkThemeButton svg:hover {
+	filter: brightness(0.3);
 }
 
 @media screen and (min-height: 680px) {

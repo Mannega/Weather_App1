@@ -54,7 +54,8 @@ header {
 	width: 392px;
 	min-height: 92vh;
 	/* border: 1px solid black; */
-	overflow-y: scroll;
+	/* overflow-y: scroll; */
+	/* position: sticky; */
 	padding: 15px;
 	background-color: white;
 	box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.1);
