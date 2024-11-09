@@ -276,7 +276,7 @@ filterByCategorySelect.addEventListener('change', sortByCategory);
 backToMainPageButton.removeEventListener('click', backToMainPage);
 backToMainPageButton.addEventListener('click', backToMainPage);
 function backToMainPage() {
-	window.location.href = '../main/index.html';
+	window.location.href = '../index.html';
 }
 
 clearButton.addEventListener('click', (event) => {
